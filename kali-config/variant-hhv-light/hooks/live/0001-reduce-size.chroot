@@ -1,0 +1,8 @@
+#!/bin/sh
+
+rm -rfv /usr/share/man/??
+rm -rfv /usr/share/man/??_*
+rm -rfv /var/cache/apt/*
+rm -rfv /var/lib/apt/lists/*
+
+
