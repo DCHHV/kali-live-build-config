@@ -2,10 +2,9 @@
 # Hard to find in documentation, but "kali-desktop-live" is a metapackage for
 # the following nice-to-have desktop functions: 
 # locales-all, console-setup, cryptsetup, alsa-tools
-# console-setup
-# cryptsetup
-# alsa-tools
-kali-desktop-live
+console-setup
+cryptsetup
+alsa-tools
 
 # Kali applications
 iceweasel
