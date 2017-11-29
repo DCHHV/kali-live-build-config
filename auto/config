@@ -116,8 +116,8 @@ lb config noauto \
 	--updates false \
 	--backports false \
 	--source false \
-	--firmware-binary true \
-	--firmware-chroot true \
+	--firmware-binary false \
+	--firmware-chroot false \
 	--mirror-bootstrap "$kali_mirror" \
 	--mirror-debian-installer "$kali_mirror" \
 	--mirror-binary "$public_kali_mirror" \
