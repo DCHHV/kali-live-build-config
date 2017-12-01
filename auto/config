@@ -19,7 +19,7 @@ public_kali_mirror=http://http.kali.org/kali
 temp=""
 arch=$(dpkg --print-architecture)
 dist="kali-rolling"
-lb_opts=""
+lb_opts="--apt-indices false"
 while [ $# -gt 0 ]; do
    	arg="$1"
 	case "$arg" in
