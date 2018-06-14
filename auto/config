@@ -17,6 +17,8 @@ public_kali_mirror=http://http.kali.org/kali
 
 # Detect target architecture and filter args
 temp=""
+build_firmware=true
+install_option="live"
 arch=$(dpkg --print-architecture)
 dist="kali-rolling"
 lb_opts="--apt-indices false"
@@ -46,6 +48,12 @@ while [ $# -gt 0 ]; do
 		# filtering them away assuming that the remaining ones
 		# are intended for lb config !
 		;;
+	--no-firmware)
+		build_firmware=false
+		;;
+	--no-installer)
+		install_option="false"
+		;;
 	*)
 		temp="$temp "'"'"$arg"'"'
 		;;
@@ -72,10 +80,10 @@ fi
 # Define options that vary across architectures
 case "$arch" in
     amd64)
-	lb_opts="$lb_opts --debian-installer false"
+	lb_opts="$lb_opts --debian-installer $install_option"
     ;;
     i386)
-	lb_opts="$lb_opts --debian-installer false --linux-flavours 686-pae"
+	lb_opts="$lb_opts --debian-installer $install_option --linux-flavours 686-pae"
     ;;
     armel|armhf)
 	lb_opts="$lb_opts --binary-images hdd --binary-filesystem ext4 --chroot-filesystem none"
@@ -126,8 +134,8 @@ lb config noauto \
 	--updates false \
 	--backports false \
 	--source false \
-	--firmware-binary false \
-	--firmware-chroot false \
+	--firmware-binary $build_firmware \
+	--firmware-chroot $build_firmware \
 	--mirror-bootstrap "$kali_mirror" \
 	--mirror-debian-installer "$kali_mirror" \
 	--mirror-binary "$public_kali_mirror" \

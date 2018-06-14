@@ -10,6 +10,8 @@ TARGET_DIR="$(dirname $0)/images"
 TARGET_SUBDIR=""
 SUDO="sudo"
 VERBOSE=""
+KALI_FIRMWARE=""
+KALI_INSTALLER=""
 HOST_ARCH=$(dpkg --print-architecture)
 
 image_name() {
@@ -89,6 +91,8 @@ while true; do
 		--variant) KALI_VARIANT="$2"; shift 2; ;;
 		--version) KALI_VERSION="$2"; shift 2; ;;
 		--subdir) TARGET_SUBDIR="$2"; shift 2; ;;
+		--no-firmware) KALI_FIRMWARE="--no-firmware"; shift 1 ;;
+		--no-installer) KALI_INSTALLER="--no-installer"; shift 1 ;;
 		--get-image-path) ACTION="get-image-path"; shift 1; ;;
 		--) shift; break; ;;
 		*) echo "ERROR: Invalid command-line option: $1" >&2; exit 1; ;;
@@ -120,7 +124,7 @@ if [ ! -d "$(dirname $0)/kali-config/variant-$KALI_VARIANT" ]; then
 fi
 
 # Build parameters for lb config
-KALI_CONFIG_OPTS="--distribution $KALI_DIST -- --variant $KALI_VARIANT"
+KALI_CONFIG_OPTS="--distribution $KALI_DIST -- --variant $KALI_VARIANT $KALI_FIRMWARE $KALI_INSTALLER"
 if [ -n "$OPT_pu" ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --proposed-updates"
 	KALI_DIST="$KALI_DIST+pu"
