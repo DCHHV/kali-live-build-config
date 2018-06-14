@@ -133,7 +133,7 @@ lb config noauto \
 	--mirror-binary "$public_kali_mirror" \
 	--iso-application "Kali Linux" \
 	--iso-publisher "Kali" \
-	--iso-volume "Kali Live" \
+	--iso-volume "HHV Kali Live" \
 	--linux-packages linux-image \
 	--memtest memtest86 \
 	--bootappend-live "boot=live components splash username=root hostname=kali" \
