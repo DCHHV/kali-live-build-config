@@ -5,7 +5,6 @@
 # kali-desktop-live
 console-setup
 cryptsetup
-alsa-tools
 
 # Kali applications
 openssh-server
@@ -20,7 +19,26 @@ openssh-server
 # kali-root-login, kali-defaults, kali-menu, kali-debtags, kali-archive-keyring,
 # desktop-base, firefox-esr | firefox-esr:any | firefox-esr:armhf | firefox |
 # www-browser | www-browser:any, dbus-user-session, xserver-xorg-legacy
-kali-desktop-xfce
+#
+# In order to save some space, we manually specify what to include and not
+#
+# kali-desktop-xfce
+xfce4
+# xfce4-terminal
+xterm
+xfce4-power-manager-plugins
+lightdm
+network-manager-gnome
+# gnome-theme-kali
+kali-root-login
+kali-defaults
+kali-menu
+kali-debtags
+kali-archive-keyring
+desktop-base
+dbus-user-session
+xserver-xorg-legacy
+firefox-esr
 
 # Hardware tools
 # Electronic schematic and PCB design software
@@ -42,7 +60,7 @@ openocd
 # AVR development board IDE and built-in libraries
 # arduino 
 # Program your Arduino from the command line
-arduino-mk
+# arduino-mk
 # Atmel SAM ARM microcontroller flash programming utility
 # bossa-cli
 # Cypress EZ-USB FX2 (LP) programmer
@@ -92,15 +110,15 @@ picprog
 # tool to decode RFID tag data
 # rfdump
 # In-System Programmer for 8051 MCUs using usbtiny
-s51dude
+# s51dude
 # OBD-II vehicle diagnostic scanner
 # scantool
 # Small Device C Compiler
 sdcc
 # Micro-controller simulator for SDCC
-sdcc-ucsim
+# sdcc-ucsim
 # Atmel AVR simulator
-simulavr
+# simulavr
 # MIPS R2000/R3000 emulator
 # spim
 # STM32 chip flashing utility using a serial bootloader
