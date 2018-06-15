@@ -27,8 +27,6 @@ kali-linux-sdr
 kali-linux-rfid
 
 # Hardware tools
-# Electronic schematic and PCB design software
-kicad
 # Logic analyzer and protocol decoder software suite
 sigrok
 # GNU C compiler (cross compiler for avr)
@@ -72,7 +70,7 @@ glogic
 # GNU Circuit Analysis package
 gnucap
 # Graphical Intel 8085 simulator, assembler and debugger
-gnusim8085
+# gnusim8085 Removed from kali-rolling, depends on unmaintained gtksourceview2
 # Simulator for Microchip's PIC microcontrollers
 gpsim
 # GNU PIC utilities
@@ -211,27 +209,27 @@ geda-symbols
 # GPL EDA -- Electronics design software (utilities)
 geda-utils
 # GPL EDA -- Electronics design software -- gschem -> PCB workflow GUI
-geda-xgsch2pcb
+# geda-xgsch2pcb  No longer in kali-rolling
 # Gerber file viewer for PCB design
 gerbv
 # Placement for digital VLSI design
 graywolf
 # Electronic schematic and PCB design software
-kicad
+# kicad KiCad has been removed from current kali-rolling for some reason...
 # Common files used by kicad
-kicad-common
+# kicad-common
 # Kicad help files (German)
-kicad-doc-de
+# kicad-doc-de
 # Kicad help files (English)
-kicad-doc-en
+# kicad-doc-en
 # Kicad help files (Spanish)
-kicad-doc-es
+# kicad-doc-es
 # Kicad help files (French)
-kicad-doc-fr
+# kicad-doc-fr
 # Kicad help files (Japanese)
-kicad-doc-ja
+# kicad-doc-ja
 # Kicad help files (Dutch)
-kicad-doc-nl
+# kicad-doc-nl
 # Control programs for the Per Vices Noctar IQ demodulator board
 langford-utils
 # GPL EDA -- Electronics design software (data files)
@@ -241,7 +239,7 @@ libgeda42
 # utility library for talking to the LEGO Mindstorms NXT brick
 libnxt
 # tool to generate Smith Charts
-linsmith
+# linsmith Removed from kali-rolling, depends on libgnomeui
 # Flash programmer for Renesas M16C and R8C microcontrollers
 m16c-flash
 # VLSI layout tool
@@ -273,13 +271,13 @@ owhttpd
 # Backend server for 1-Wire control
 owserver
 # printed circuit board (pcb) design program - meta-package
-pcb
+# pcb Removed from kali-rolling, issues with segfaults
 # printed circuit board (pcb) design program - common files
-pcb-common
+# pcb-common
 # printed circuit board (pcb) design program - GTK+ interface
-pcb-gtk
+# pcb-gtk
 # printed circuit board (pcb) design program - LessTif interface
-pcb-lesstif
+# pcb-lesstif
 # printed circuit board (pcb) design program
 pcb-rnd
 # command-line tool for engraving PCBs using CNCs
