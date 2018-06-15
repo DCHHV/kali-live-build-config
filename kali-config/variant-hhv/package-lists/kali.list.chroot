@@ -10,6 +10,9 @@ alsa-tools
 # Kali applications
 openssh-server
 
+# Required for building the minipro binary
+libusb-1.0-0-dev
+
 # A light desktop
 # Also hard to find in documentation, but "kali-desktop-xfce" is a metapackage
 # for the following:

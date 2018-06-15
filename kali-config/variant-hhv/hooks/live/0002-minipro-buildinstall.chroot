@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd /
+git clone https://github.com/dchhv/minipro
+cd /minipro
+make && make install
+cd /
+rm -rfv /minipro
