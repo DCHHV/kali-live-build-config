@@ -9,7 +9,7 @@ We welcome any feedback or pull requests.  If there is a package we missed that 
 
 Variants
 --------
-There are two build variants, hhv and hhv-light.  The hhv variant is the full size, including nearly every electronics or scientific package available through Kali.  It is intended to fit on a DVD, weighing in around 2.2 GB in size.  The hhv-light variant is much more stripped down, expecting there to be no external firmware added, no installer option, and only the bare essentials of hardware hacking tools (or at least what we felt the most important are).  To make it fit on a CDROM we've even removed some of the Kali themes, it just barely squeezes on a 700 MB CD-R.
+We created a customized "variant-hhv" Kali configuration. This includes nearly every electronics or scientific package available through Kali. It is intended to fit on a DVD, weighing in around 2 GB in size. All of the standard Kali features are available, including firmware, installation options, and access to the kali-rolling repositories.
 
 Building
 --------
@@ -21,11 +21,7 @@ Once in a kali-rolling environment, building can be done with:
 
 `sudo apt install curl git live-build cdebootstrap`
 
-`./build.sh --distribution kali-rolling --variant hhv-light --no-firmware --no-installer -v`  # For light variant
-
-`./build.sh --distribution kali-rolling --variant hhv -v`  # For standard variant
-
-Note: The --no-firmware and --no-installer options must be passed to the hhv-light variant, without them they will not fit on a CD.  Even still, the menu would not list an installer option.  If you need the firmware files and the ability to install to a disk, we recommend just using the standard hhv variant.
+`./build.sh --distribution kali-rolling --variant hhv -v`
 
 Legal
 -----
