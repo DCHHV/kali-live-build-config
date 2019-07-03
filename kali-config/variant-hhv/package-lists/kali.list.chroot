@@ -73,7 +73,7 @@ glogic
 # GNU Circuit Analysis package
 gnucap
 # Graphical Intel 8085 simulator, assembler and debugger
-# gnusim8085 Removed from kali-rolling, depends on unmaintained gtksourceview2
+gnusim8085
 # Simulator for Microchip's PIC microcontrollers
 gpsim
 # GNU PIC utilities
@@ -83,7 +83,7 @@ gspiceui
 # VCD (Value Change Dump) file waveform viewer
 gtkwave
 # waveform viewer eg for spice simulators
-gwave
+# gwave # Not available in kali-rolling
 # switch-level simulator
 irsim
 # interface to NXP LPC Microcontrollers ISP serial interface
@@ -185,6 +185,10 @@ digitemp
 electric
 # Identify, read, write, erase, and verify BIOS/ROM/flash chips
 flashrom
+# Place and route tool for iCE40 family FPGAs
+arachne-pnr
+# Chip db files for arachne-pnr
+arachne-pnr-chipdb
 # Tools to handle the bitstream format of Lattice iCE40 FPGAs
 fpga-icestorm
 # Chip database files for fpga-icestorm
@@ -212,27 +216,26 @@ geda-symbols
 # GPL EDA -- Electronics design software (utilities)
 geda-utils
 # GPL EDA -- Electronics design software -- gschem -> PCB workflow GUI
-# geda-xgsch2pcb  No longer in kali-rolling
+geda-xgsch2pcb
 # Gerber file viewer for PCB design
 gerbv
 # Placement for digital VLSI design
 graywolf
 # Electronic schematic and PCB design software
-# kicad KiCad has been removed from current kali-rolling for some reason...
 # Common files used by kicad
-# kicad-common
+kicad-common
 # Kicad help files (German)
-# kicad-doc-de
+kicad-doc-de
 # Kicad help files (English)
-# kicad-doc-en
+kicad-doc-en
 # Kicad help files (Spanish)
-# kicad-doc-es
+kicad-doc-es
 # Kicad help files (French)
-# kicad-doc-fr
+kicad-doc-fr
 # Kicad help files (Japanese)
-# kicad-doc-ja
+kicad-doc-ja
 # Kicad help files (Dutch)
-# kicad-doc-nl
+kicad-doc-nl
 # Control programs for the Per Vices Noctar IQ demodulator board
 langford-utils
 # GPL EDA -- Electronics design software (data files)
@@ -274,13 +277,13 @@ owhttpd
 # Backend server for 1-Wire control
 owserver
 # printed circuit board (pcb) design program - meta-package
-# pcb Removed from kali-rolling, issues with segfaults
+pcb
 # printed circuit board (pcb) design program - common files
-# pcb-common
+pcb-common
 # printed circuit board (pcb) design program - GTK+ interface
-# pcb-gtk
+pcb-gtk
 # printed circuit board (pcb) design program - LessTif interface
-# pcb-lesstif
+pcb-lesstif
 # printed circuit board (pcb) design program
 pcb-rnd
 # command-line tool for engraving PCBs using CNCs
