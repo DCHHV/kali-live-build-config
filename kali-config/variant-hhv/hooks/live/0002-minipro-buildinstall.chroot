@@ -1,8 +1,6 @@
 #!/bin/sh
 
-cd /
-git clone https://github.com/dchhv/minipro
-cd /minipro
+TMPDIR=$(mktemp -d)
+git clone https://gitlab.com/DavidGriffith/minipro/ ${TMPDIR}
+cd ${TMPDIR}
 make && make install
-cd /
-rm -rfv /minipro
