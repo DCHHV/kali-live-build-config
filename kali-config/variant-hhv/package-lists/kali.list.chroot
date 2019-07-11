@@ -13,6 +13,13 @@ openssh-server
 # Required for building the minipro binary
 libusb-1.0-0-dev
 
+# Qt5.8.X or better required for SavvyCAN, plus other libs
+qt5-default
+libqt5serialbus5-dev
+libqt5serialport5-dev
+qttools5-dev
+qtdeclarative5-dev
+
 # A light desktop
 # Also hard to find in documentation, but "kali-desktop-xfce" is a metapackage
 # for the following:
