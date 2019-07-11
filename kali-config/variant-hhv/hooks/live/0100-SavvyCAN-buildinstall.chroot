@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# Seems like this tool relies on X, doesn't like Wayland
+# which I believe is what kali-rolling default uses.
+# HHV variant uses X with xfce4. SavvyCAN runs in final
+# LiveCD but not in kali-rolling default install used as the
+# build environment.
+
+TMPDIR=$(mktemp -d)
+git clone https://github.com/collin80/SavvyCAN.git ${TMPDIR}
+cd ${TMPDIR}
+qmake && make
+# SavvyCAN project does not actually have any install functionality
+# for some reason. We have to manually install it.
+install SavvyCAN /usr/local/bin
+# If the build directory is not removed, it remains in the squashfs
+cd -
+rm -rfv ${TMPDIR}
