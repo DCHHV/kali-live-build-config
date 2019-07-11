@@ -224,18 +224,28 @@ graywolf
 # Electronic schematic and PCB design software
 # Common files used by kicad
 kicad-common
-# Kicad help files (German)
+#Kicad help files (Catalan)
+kicad-doc-ca
+#Kicad help files (German)
 kicad-doc-de
-# Kicad help files (English)
+#Kicad help files (English)
 kicad-doc-en
-# Kicad help files (Spanish)
+#Kicad help files (Spanish)
 kicad-doc-es
-# Kicad help files (French)
+#Kicad help files (French)
 kicad-doc-fr
-# Kicad help files (Japanese)
+#Kicad help files (Indonesian)
+kicad-doc-id
+#Kicad help files (Italian)
+kicad-doc-it
+#Kicad help files (Japanese)
 kicad-doc-ja
-# Kicad help files (Dutch)
-kicad-doc-nl
+#Kicad help files (Polish)
+kicad-doc-pl
+#Kicad help files (Russian)
+kicad-doc-ru
+#Kicad help files (Chinese)
+kicad-doc-zh
 # Control programs for the Per Vices Noctar IQ demodulator board
 langford-utils
 # GPL EDA -- Electronics design software (data files)
