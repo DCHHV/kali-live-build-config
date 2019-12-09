@@ -21,16 +21,7 @@ if [ -e /etc/cryptsetup-initramfs/conf-hook ]; then
     fi
 fi
 
-# Disable the udev rules renaming the network interfaces (can also be
-# achieved with kernel command line net.ifnames=0 but we don't have a nice
-# way to set it on the installed system)
-mkdir -p /etc/systemd/network /etc/udev/rules.d
-ln -sf /dev/null /etc/systemd/network/90-mac-for-usb.link
-ln -sf /dev/null /etc/systemd/network/99-default.link
-echo > /etc/udev/rules.d/73-special-net-names.rules
-
-# Rebuild the initramfs to include the last two changes (cryptsetup,
-# network device)
+# Rebuild the initramfs to include the last change
 update-initramfs -u
 
 # Run updatedb to initialize the database for the locate command
