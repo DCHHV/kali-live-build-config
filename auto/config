@@ -72,10 +72,10 @@ fi
 # Define options that vary across architectures
 case "$arch" in
     amd64)
-	lb_opts="$lb_opts --debian-installer netinst"
+	lb_opts="$lb_opts --debian-installer cdrom"
     ;;
     i386)
-	lb_opts="$lb_opts --debian-installer netinst --linux-flavours 686-pae"
+	lb_opts="$lb_opts --debian-installer cdrom --linux-flavours 686-pae"
     ;;
     armel|armhf)
 	lb_opts="$lb_opts --binary-images hdd --binary-filesystem ext4 --chroot-filesystem none"
