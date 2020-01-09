@@ -14,3 +14,5 @@ config/binary
 config/bootstrap
 config/common
 config/source
+simple-cdd/profiles/kali.downloads
+simple-cdd/tmp

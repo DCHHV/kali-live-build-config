@@ -1,0 +1,4 @@
+# Empty list because netinst has no embedded packages
+#
+# This variant is not meant to be used with live-build but only with
+# simple-cdd and thus ./build.sh --installer --variant netinst
