@@ -83,7 +83,7 @@ while true; do
 	case "$1" in
 		-d|--distribution) KALI_DIST="$2"; shift 2; ;;
 		-p|--proposed-updates) OPT_pu="1"; shift 1; ;;
-		-a|--arch) KALI_ARCHES="${KALI_ARCHES:+$KALI_ARCHES } $2"; shift 2; ;;
+		-a|--arch) KALI_ARCH="$2"; shift 2; ;;
 		-v|--verbose) VERBOSE="1"; shift 1; ;;
 		-s|--salt) shift; ;;
 		--variant) KALI_VARIANT="$2"; shift 2; ;;
@@ -96,25 +96,22 @@ while true; do
 done
 
 # Set default values
-KALI_ARCHES=${KALI_ARCHES:-$HOST_ARCH}
+KALI_ARCH=${KALI_ARCH:-$HOST_ARCH}
 if [ -z "$KALI_VERSION" ]; then
 	KALI_VERSION="$(default_version $KALI_DIST)"
 fi
 
 # Check parameters
-for arch in $KALI_ARCHES; do
-	if [ "$arch" = "$HOST_ARCH" ]; then
-		continue
-	fi
-	case "$HOST_ARCH/$arch" in
+if [ "$HOST_ARCH" != "$KALI_ARCH" ]; then
+	case "$HOST_ARCH/$KALI_ARCH" in
 		amd64/i386|i386/amd64)
 		;;
 		*)
-			echo "Can't build $arch image on $HOST_ARCH system." >&2
+			echo "Can't build $KALI_ARCH image on $HOST_ARCH system." >&2
 			exit 1
 		;;
 	esac
-done
+fi
 if [ ! -d "$(dirname $0)/kali-config/variant-$KALI_VARIANT" ]; then
 	echo "ERROR: Unknown variant of Kali configuration: $KALI_VARIANT" >&2
 fi
@@ -159,28 +156,24 @@ else
 fi
 
 if [ "$ACTION" = "get-image-path" ]; then
-	for KALI_ARCH in $KALI_ARCHES; do
-		echo $(target_image_name $KALI_ARCH)
-	done
+	echo $(target_image_name $KALI_ARCH)
 	exit 0
 fi
 
 cd $(dirname $0)
 mkdir -p $TARGET_DIR/$TARGET_SUBDIR
 
-for KALI_ARCH in $KALI_ARCHES; do
-	IMAGE_NAME="$(image_name $KALI_ARCH)"
-	set +e
-	: > build.log
-	run_and_log $SUDO lb clean --purge
-	[ $? -eq 0 ] || failure
-	run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
-	[ $? -eq 0 ] || failure
-	run_and_log $SUDO lb build
-	if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
-		failure
-	fi
-	set -e
-	mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
-	mv -f build.log $TARGET_DIR/$(target_build_log $KALI_ARCH)
-done
+IMAGE_NAME="$(image_name $KALI_ARCH)"
+set +e
+: > build.log
+run_and_log $SUDO lb clean --purge
+[ $? -eq 0 ] || failure
+run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
+[ $? -eq 0 ] || failure
+run_and_log $SUDO lb build
+if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
+	failure
+fi
+set -e
+mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
+mv -f build.log $TARGET_DIR/$(target_build_log $KALI_ARCH)
