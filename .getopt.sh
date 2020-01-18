@@ -5,7 +5,9 @@
 #      --subdir <directory-name>
 #      --version <version>
 #      --variant <variant>
+#      --installer
+#      --no-clean
 # -v | --verbose
 # -s | --salt
 BUILD_OPTS_SHORT="d:pa:vs"
-BUILD_OPTS_LONG="distribution:,proposed-updates,arch:,subdir:,version:,variant:,verbose,salt"
+BUILD_OPTS_LONG="distribution:,proposed-updates,arch:,subdir:,version:,variant:,verbose,salt,installer,no-clean"

@@ -100,7 +100,7 @@ run_and_log() {
 . $(dirname $0)/.getopt.sh
 
 # Parsing command line options
-temp=$(getopt -o "$BUILD_OPTS_SHORT" -l "$BUILD_OPTS_LONG,get-image-path,installer,no-clean" -- "$@")
+temp=$(getopt -o "$BUILD_OPTS_SHORT" -l "$BUILD_OPTS_LONG,get-image-path" -- "$@")
 eval set -- "$temp"
 while true; do
 	case "$1" in
