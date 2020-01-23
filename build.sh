@@ -219,9 +219,18 @@ case "$IMAGE_TYPE" in
 	installer)
 		if [ "$NO_CLEAN" = "" ]; then
 			run_and_log $SUDO rm -rf simple-cdd/tmp
+			run_and_log $SUDO rm -rf simple-cdd/debian-cd
 		fi
 
+		# Setup custom debian-cd to make our changes
+		cp -aT /usr/share/debian-cd simple-cdd/debian-cd
+		# Keep 686-pae udebs as we changed the default from 686
+		# to 686-pae in the debian-installer images
+		sed -i -e '/686-pae/d' \
+		    simple-cdd/debian-cd/data/$CODENAME/exclude-udebs-i386
+
 		# Override some debian-cd environment variables
+		export BASEDIR=$(pwd)/simple-cdd/debian-cd
 		export ARCHES=$KALI_ARCH
 		export ARCH=$KALI_ARCH
 		export DEBVERSION=$KALI_VERSION
