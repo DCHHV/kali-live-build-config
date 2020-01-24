@@ -136,8 +136,8 @@ lb config noauto \
 	--iso-volume "Kali Live" \
 	--linux-packages linux-image \
 	--memtest memtest86 \
-	--bootappend-live "boot=live components quiet splash username=kali hostname=kali noeject" \
-	--bootappend-live-failsafe "boot=live components username=kali hostname=kali noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
+	--bootappend-live "boot=live components quiet splash noeject" \
+	--bootappend-live-failsafe "boot=live components noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
 	--bootappend-install "net.ifnames=0" \
 	--security false \
 	$lb_opts \
