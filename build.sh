@@ -271,5 +271,5 @@ case "$IMAGE_TYPE" in
 esac
 
 set -e
-mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
-mv -f $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
+mv $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
+mv $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
