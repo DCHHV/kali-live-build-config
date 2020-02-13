@@ -37,10 +37,10 @@ live_image_name() {
 }
 
 installer_image_name() {
-	if [ "$KALI_VARIANT" = "default" ]; then
-		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-DVD-1.iso"
-	else
+	if [ "$KALI_VARIANT" = "netinst" ]; then
 		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-NETINST-1.iso"
+	else
+		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-DVD-1.iso"
 	fi
 }
 
