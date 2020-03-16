@@ -7,6 +7,7 @@ locales
 pciutils
 usbutils
 eject
+tasksel
 
 # EFI support, ensure we have the required .deb in the ISO available for
 # installation
