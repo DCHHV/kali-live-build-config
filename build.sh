@@ -137,9 +137,6 @@ if [ "$HOST_ARCH" != "$KALI_ARCH" ]; then
 		;;
 	esac
 fi
-if [ ! -d "$(dirname $0)/kali-config/variant-$KALI_VARIANT" ]; then
-	echo "ERROR: Unknown variant of Kali configuration: $KALI_VARIANT" >&2
-fi
 
 # Build parameters for lb config
 KALI_CONFIG_OPTS="--distribution $KALI_DIST -- --variant $KALI_VARIANT"
@@ -154,6 +151,10 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 case "$IMAGE_TYPE" in
 	live)
+		if [ ! -d "$(dirname $0)/kali-config/variant-$KALI_VARIANT" ]; then
+			echo "ERROR: Unknown variant of Kali live configuration: $KALI_VARIANT" >&2
+		fi
+
 		ver_live_build=$(dpkg-query -f '${Version}' -W live-build)
 		if dpkg --compare-versions "$ver_live_build" lt 1:20151215kali1; then
 			echo "ERROR: You need live-build (>= 1:20151215kali1), you have $ver_live_build" >&2
@@ -166,6 +167,10 @@ case "$IMAGE_TYPE" in
 		fi
 	;;
 	installer)
+		if [ ! -d "$(dirname $0)/kali-config/installer-$KALI_VARIANT" ]; then
+			echo "ERROR: Unknown variant of Kali installer configuration: $KALI_VARIANT" >&2
+		fi
+
 		ver_debian_cd=$(dpkg-query -f '${Version}' -W debian-cd)
 		if dpkg --compare-versions "$ver_debian_cd" lt 3.1.28~kali1; then
 			echo "ERROR: You need debian-cd (>= 3.1.28~kali1), you have $ver_debian_cd" >&2
@@ -176,7 +181,6 @@ case "$IMAGE_TYPE" in
 			echo "ERROR: You need simple-cdd (>= 0.6.8~kali1), you have $ver_simple_cdd" >&2
 			exit 1
 		fi
-
 	;;
 esac
 
@@ -250,7 +254,7 @@ case "$IMAGE_TYPE" in
 		fi
 
 		# Configure the kali profile with the packages we want
-		grep -v '^#' kali-config/variant-$KALI_VARIANT/package-lists/kali.list.chroot \
+		grep -v '^#' kali-config/installer-$KALI_VARIANT/packages \
 		    >simple-cdd/profiles/kali.downloads
 
 		# Run simple-cdd
@@ -273,3 +277,5 @@ esac
 set -e
 mv $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
 mv $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
+
+run_and_log echo -e "\n***\nGENERATED KALI IMAGE: $TARGET_DIR/$(target_image_name $KALI_ARCH)\n***"

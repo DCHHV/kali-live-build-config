@@ -1,0 +1,16 @@
+# Full installer image, it should contain everything offered in tasksel
+# during initial installation so all kali-linux-* except
+# kali-linux-everything and most desktops.
+
+# Metapackages
+kali-linux-core
+kali-linux-top10
+kali-linux-default
+kali-linux-large
+
+# Graphical desktops
+kali-desktop-xfce
+kali-desktop-gnome
+kali-desktop-kde
+kali-desktop-lxde
+kali-desktop-mate
