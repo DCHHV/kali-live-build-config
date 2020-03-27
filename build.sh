@@ -256,6 +256,8 @@ case "$IMAGE_TYPE" in
 		# Configure the kali profile with the packages we want
 		grep -v '^#' kali-config/installer-$KALI_VARIANT/packages \
 		    >simple-cdd/profiles/kali.downloads
+		# Tasksel is required in the mirror for debian-cd
+		echo tasksel >>simple-cdd/profiles/kali.downloads
 
 		# Run simple-cdd
 		cd simple-cdd
