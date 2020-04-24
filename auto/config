@@ -98,7 +98,7 @@ esac
 # Setup configuration files from variant and options
 
 # Drop all files that a former run might have put into place
-for file in $(cd kali-config && find . -type f); do
+for file in $(cd kali-config && find ./common ./variant-* -type f); do
     file=${file#./*/}
     rm -f config/$file
 done
