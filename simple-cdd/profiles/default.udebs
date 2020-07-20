@@ -1,2 +1,1 @@
-# Disable default udebs from simple-cdd
-# We don't want simple-cdd-profiles, we want to use tasksel
+simple-cdd-profiles
