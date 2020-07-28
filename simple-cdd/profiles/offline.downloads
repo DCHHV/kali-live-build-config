@@ -1,0 +1,10 @@
+# Add packages required for virtualization support (installed by
+# /usr/lib/finish-install.d/08hw-detect) including their recommends
+open-vm-tools-desktop
+xauth
+xserver-xorg-video-vmware
+open-vm-tools
+virtualbox-guest-x11
+virtualbox-guest-utils
+hyperv-daemons
+qemu-guest-agent
