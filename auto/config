@@ -8,7 +8,7 @@ set -o pipefail # Bashism
 if [ -e .mirror ]; then
     kali_mirror=$(cat .mirror)
 else
-    kali_mirror=http://archive.kali.org/kali
+    kali_mirror=http://kali.download/kali
 fi
 
 ### DO NOT EDIT THE REST OF THIS FILE ###
