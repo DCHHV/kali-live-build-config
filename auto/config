@@ -56,6 +56,10 @@ eval set -- "$temp"
 
 # Resolve release name
 dist=$(curl -s $kali_mirror/dists/$dist/Release | awk '/^Codename:/ {print $2}')
+if [ -z "$dist" ]; then
+	echo "ERROR: Build release could not be resolved"
+	exit 1
+fi
 
 # live-build doesn't work if --parent-debian-distribution is unknown of
 # debian-cd => we have to put a symlink so that it deals with kali like sid
