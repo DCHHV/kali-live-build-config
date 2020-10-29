@@ -1,0 +1,19 @@
+#!/bin/sh
+
+configure_zsh() {
+    # Stop if zsh is not present
+    if [ ! -x /usr/bin/zsh ]; then
+	return
+    fi
+    # Stop if user has opted out of zsh
+    if echo "${LIVE_CONFIG_CMDLINE}" | grep -qs 'nozsh'; then
+	return
+    fi
+    chsh --shell /usr/bin/zsh kali
+}
+
+# Set "kali" as password for the user kali
+usermod -p 'AqLUsDitNnTsw' kali
+
+# Change default shell to zsh
+configure_zsh
