@@ -18,6 +18,16 @@ END
     apt-get update
 }
 
+get_user_list() {
+    for user in $(cd /home && ls); do
+	if ! getent passwd "$user" >/dev/null; then
+	    echo "WARNING: user '$user' is invalid but /home/$user exists"
+	    continue
+	fi
+	echo "$user"
+    done
+}
+
 configure_zsh() {
     if grep -q 'nozsh' /proc/cmdline; then
 	echo "INFO: user opted out of zsh by default"
@@ -27,15 +37,23 @@ configure_zsh() {
 	echo "INFO: /usr/bin/zsh is not available"
 	return
     fi
-    for user in $(cd /home && ls); do
-	if ! getent passwd $user >/dev/null; then
-	    echo "WARNING: user '$user' is invalid but /home/$user exists"
-	    continue
-	fi
+    for user in $(get_user_list); do
 	echo "INFO: changing default shell of user '$user' to zsh"
 	chsh --shell /usr/bin/zsh $user
     done
 }
 
+configure_kaboxer() {
+    # Create the group if needed
+    addgroup --system kaboxer || true
+
+    # Add the users to the group
+    for user in $(get_user_list); do
+	echo "INFO: adding user '$user' to group 'kaboxer'"
+	adduser $user kaboxer || true
+    done
+}
+
 configure_sources_list
 configure_zsh
+configure_kaboxer

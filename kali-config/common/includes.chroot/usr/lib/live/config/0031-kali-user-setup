@@ -12,8 +12,17 @@ configure_zsh() {
     chsh --shell /usr/bin/zsh kali
 }
 
+configure_kaboxer() {
+    addgroup --system kaboxer || true  # Ensures the group exists
+
+    adduser kali kaboxer
+}
+
 # Set "kali" as password for the user kali
 usermod -p 'AqLUsDitNnTsw' kali
 
 # Change default shell to zsh
 configure_zsh
+
+# Add kali user to the kaboxer group
+configure_kaboxer
