@@ -10,6 +10,7 @@ configure_zsh() {
 	return
     fi
     chsh --shell /usr/bin/zsh kali
+    chsh --shell /usr/bin/zsh root
 }
 
 configure_kaboxer() {

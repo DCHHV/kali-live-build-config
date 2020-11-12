@@ -33,6 +33,7 @@ get_user_list() {
 	fi
 	echo "$user"
     done
+    echo "root"
 }
 
 configure_zsh() {
