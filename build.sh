@@ -212,6 +212,7 @@ case "$IMAGE_TYPE" in
 		if [ "$NO_CLEAN" = "" ]; then
 			run_and_log $SUDO lb clean --purge
 		fi
+		cp bin/kali-finish-install kali-config/common/includes.installer/
 		[ $? -eq 0 ] || failure
 		run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
 		[ $? -eq 0 ] || failure
@@ -258,6 +259,9 @@ case "$IMAGE_TYPE" in
 		    >simple-cdd/profiles/kali.downloads
 		# Tasksel is required in the mirror for debian-cd
 		echo tasksel >>simple-cdd/profiles/kali.downloads
+
+		# Update the postinst script
+		cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
 
 		# Run simple-cdd
 		cd simple-cdd
