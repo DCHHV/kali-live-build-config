@@ -19,6 +19,11 @@ configure_kaboxer() {
     adduser kali kaboxer
 }
 
+# Avoid configuring multiple times in case persistence is enabled
+if [ -e /var/lib/live/config/kali-user-setup ]; then
+    exit 0
+fi
+
 # Set "kali" as password for the user kali
 usermod -p 'AqLUsDitNnTsw' kali
 
@@ -27,3 +32,6 @@ configure_zsh
 
 # Add kali user to the kaboxer group
 configure_kaboxer
+
+# Remember that this script has been run
+touch /var/lib/live/config/kali-user-setup
