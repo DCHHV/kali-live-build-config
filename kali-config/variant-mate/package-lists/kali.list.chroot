@@ -14,8 +14,7 @@ kali-linux-default
 # Graphical desktop
 kali-desktop-mate
 # | NOTE: With Kali 1.x, the mate desktop requires other changes to the live config.
-# | See https://docs.kali.org/live-build/customize-the-kali-desktop-environment
-# | for details
+# | See ~ https://web.archive.org/web/20150721230745/http://docs.kali.org/live-build/customize-the-kali-desktop-environment
 #if DISTRIBUTION moto
 mate-archive-keyring
 #endif
