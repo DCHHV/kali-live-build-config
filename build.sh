@@ -27,7 +27,7 @@ image_name() {
 
 live_image_name() {
 	case "$KALI_ARCH" in
-		i386|amd64)
+		i386|amd64|arm64)
 			echo "live-image-$KALI_ARCH.hybrid.iso"
 		;;
 		armel|armhf)
@@ -144,6 +144,9 @@ CODENAME=$KALI_DIST  # for simple-cdd/debian-cd
 if [ -n "$OPT_pu" ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --proposed-updates"
 	KALI_DIST="$KALI_DIST+pu"
+fi
+if [ "$ARCHES" = "arm64" ]; then
+  KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --uefi-secure-boot disable"
 fi
 
 # Set sane PATH (cron seems to lack /sbin/ dirs)

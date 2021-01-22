@@ -75,7 +75,7 @@ fi
 
 # Define options that vary across architectures
 case "$arch" in
-    amd64)
+    amd64|arm64)
 	lb_opts="$lb_opts --debian-installer live"
     ;;
     i386)

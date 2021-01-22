@@ -11,6 +11,8 @@ ARCHES=$5
 cd $CDDIR
 
 # Rebrand Debian into Kali
+# The theme doesn't exist on arm64...
+if [ "$ARCHES" != "arm64" ]; then
 sed -i -e 's|Debian GNU/Linux|Kali Linux|g' \
     -e 's|Kali GNU/Linux|Kali Linux|g' \
     -e 's|Debian kali-rolling|Kali Rolling|g' \
@@ -20,6 +22,7 @@ sed -i -e 's|Debian GNU/Linux|Kali Linux|g' \
     ../boot$DISKNUM/isolinux/*.txt \
     boot/grub/theme/* \
     autorun.inf
+fi
 
 # Replace Debian specific documentation
 rm -rf css

@@ -20,3 +20,7 @@ grub-efi-ia32
 grub-efi
 grub-efi-amd64
 #endif
+#if ARCHITECTURES arm64
+# Note: There is no grub-efi package on arm64
+grub-efi-arm64
+#endif
