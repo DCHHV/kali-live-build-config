@@ -145,7 +145,8 @@ if [ -n "$OPT_pu" ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --proposed-updates"
 	KALI_DIST="$KALI_DIST+pu"
 fi
-if [ "$ARCHES" = "arm64" ]; then
+
+if [ "$KALI_ARCH" = "arm64" ]; then
   KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --uefi-secure-boot disable"
 fi
 
@@ -212,6 +213,11 @@ BUILD_LOG=$(pwd)/build.log
 
 case "$IMAGE_TYPE" in
 	live)
+    # Export the bootloader for arm64, otherwise live-build
+    # attempts to use both isolinux and grub and we only support grub.
+    if [ "$KALI_ARCH" = "arm64" ]; then
+      export LB_BOOTLOADERS=grub-efi
+    fi
 		if [ "$NO_CLEAN" = "" ]; then
 			run_and_log $SUDO lb clean --purge
 		fi
