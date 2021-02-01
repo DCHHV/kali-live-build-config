@@ -268,6 +268,11 @@ case "$IMAGE_TYPE" in
 		    >simple-cdd/profiles/kali.downloads
 		# Tasksel is required in the mirror for debian-cd
 		echo tasksel >>simple-cdd/profiles/kali.downloads
+    # Grub is the only supported bootloader on arm64
+    # so ensure it's on the iso for arm64.
+    if [ "$ARCH" = "arm64" ]; then
+      echo "grub-efi-arm64" >>simple-cdd/profiles/kali.downloads
+    fi
 
 		# Update the postinst script
 		cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
