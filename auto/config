@@ -83,6 +83,7 @@ case "$arch" in
     ;;
     arm64)
   lb_opts="$lb_opts --bootloaders grub-efi --uefi-secure-boot disable --win32-loader true"
+    ;;
     armel|armhf)
 	lb_opts="$lb_opts --binary-images hdd --binary-filesystem ext4 --chroot-filesystem none"
     ;;
