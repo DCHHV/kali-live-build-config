@@ -10,18 +10,25 @@ ARCHES=$5
 
 cd $CDDIR
 
+fix_branding() {
+    sed -i -e 's|Debian GNU/Linux|Kali Linux|g' \
+	-e 's|Kali GNU/Linux|Kali Linux|g' \
+	-e 's|Debian kali-rolling|Kali Rolling|g' \
+	-e 's|Debian|Kali|g' \
+	-e 's|DEBIAN|KALI|g' \
+	"$@"
+}
+
 # Rebrand Debian into Kali
-# The theme doesn't exist on arm64...
-if [ "$ARCHES" != "arm64" ]; then
-sed -i -e 's|Debian GNU/Linux|Kali Linux|g' \
-    -e 's|Kali GNU/Linux|Kali Linux|g' \
-    -e 's|Debian kali-rolling|Kali Rolling|g' \
-    -e 's|Debian|Kali|g' \
-    -e 's|DEBIAN|KALI|g' \
-    ../boot$DISKNUM/isolinux/menu.cfg \
-    ../boot$DISKNUM/isolinux/*.txt \
-    boot/grub/theme/* \
-    autorun.inf
+if [ -e ../boot$DISKNUM/isolinux/menu.cfg ]; then
+    fix_branding ../boot$DISKNUM/isolinux/menu.cfg \
+		 ../boot$DISKNUM/isolinux/*.txt
+fi
+if [ -d boot/grub/theme ] && [ -s boot/grub/theme ]; then
+    fix_branding boot/grub/theme/*
+fi
+if [ -e autorun.inf ]; then
+    fix_branding autorun.inf
 fi
 
 # Replace Debian specific documentation
