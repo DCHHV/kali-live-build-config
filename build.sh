@@ -127,7 +127,7 @@ if [ -z "$KALI_VERSION" ]; then
 fi
 
 # Check parameters
-if [ "$HOST_ARCH" != "$KALI_ARCH" ]; then
+if [ "$HOST_ARCH" != "$KALI_ARCH" ] && [ "$IMAGE_TYPE" != "installer" ]; then
 	case "$HOST_ARCH/$KALI_ARCH" in
 		amd64/i386|i386/amd64)
 		;;
