@@ -13,10 +13,13 @@ configure_zsh() {
     chsh --shell /usr/bin/zsh root
 }
 
-configure_kaboxer() {
+configure_usergroups() {
     addgroup --system kaboxer || true  # Ensures the group exists
+    # kaboxer - for kaboxer
+    # dialout - for serial port access
+    kali_groups="kaboxer,dialout"
 
-    adduser kali kaboxer
+    usermod -a -G $kali_groups kali
 }
 
 # Avoid configuring multiple times in case persistence is enabled
@@ -30,8 +33,8 @@ usermod -p 'AqLUsDitNnTsw' kali
 # Change default shell to zsh
 configure_zsh
 
-# Add kali user to the kaboxer group
-configure_kaboxer
+# Add kali user to additional groups
+configure_usergroups
 
 # Remember that this script has been run
 touch /var/lib/live/config/kali-user-setup
