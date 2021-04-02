@@ -55,10 +55,13 @@ configure_zsh() {
 configure_usergroups() {
   # Create the kaboxer group if needed
   addgroup --system kaboxer || true
+  # Create the wireshark group if needed
+  addgroup --system wireshark || true
 
   # kaboxer - for kaboxer
   # dialout - for serial access
-  kali_groups="kaboxer,dialout"
+  # wireshark - capture sessions in wireshark
+  kali_groups="kaboxer,dialout,wireshark"
 
   for user in $(get_user_list); do
       echo "INFO: adding user '$user' to groups '$kali_groups'"

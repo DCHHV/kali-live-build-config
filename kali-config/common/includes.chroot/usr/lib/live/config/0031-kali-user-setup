@@ -17,7 +17,8 @@ configure_usergroups() {
     addgroup --system kaboxer || true  # Ensures the group exists
     # kaboxer - for kaboxer
     # dialout - for serial port access
-    kali_groups="kaboxer,dialout"
+    # wireshark - capture sessions without being root
+    kali_groups="kaboxer,dialout,wireshark"
 
     usermod -a -G $kali_groups kali
 }
