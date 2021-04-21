@@ -15,6 +15,7 @@ configure_zsh() {
 
 configure_usergroups() {
     addgroup --system kaboxer || true  # Ensures the group exists
+    addgroup --system wireshark || true  # Ensures the group exists
     # kaboxer - for kaboxer
     # dialout - for serial port access
     # wireshark - capture sessions without being root
