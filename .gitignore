@@ -17,3 +17,10 @@ config/source
 simple-cdd/debian-cd
 simple-cdd/profiles/kali.downloads
 simple-cdd/tmp
+build.log
+config/
+chroot.files
+live-image-amd64.contents
+live-image-amd64.files
+live-image-amd64.hybrid.iso.zsync
+live-image-amd64.packages
