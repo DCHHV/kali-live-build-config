@@ -326,8 +326,8 @@ case "$IMAGE_TYPE" in
 		fi
 
 		# Run simple-cdd
-		cd simple-cdd
 		debug "Stage 1/2 - Build"
+		cd simple-cdd/
 		run_and_log build-simple-cdd \
 			--verbose \
 			--debug \
@@ -336,7 +336,7 @@ case "$IMAGE_TYPE" in
 			--dist $CODENAME \
 			--debian-mirror $kali_mirror
 		res=$?
-		cd ..
+		cd ../
 		if [ $res -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
 			failure
 		fi
