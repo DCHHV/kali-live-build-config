@@ -326,7 +326,7 @@ case "$IMAGE_TYPE" in
 		fi
 
 		# Run simple-cdd
-		debug "Stage 1/2 - Build"
+		debug "Stage 2/2 - Build"
 		cd simple-cdd/
 		run_and_log build-simple-cdd \
 			--verbose \
