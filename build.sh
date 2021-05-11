@@ -76,11 +76,11 @@ target_build_log() {
 
 default_version() {
 	case "$1" in
-	    kali-*)
-		echo "${1#kali-}"
+		kali-*)
+			echo "${1#kali-}"
 		;;
-	    *)
-		echo "$1"
+		*)
+			echo "$1"
 		;;
 	esac
 }
@@ -120,7 +120,7 @@ while true; do
 		--no-clean) NO_CLEAN="1"; shift 1 ;;
 		--) shift; break; ;;
 		*) echo "ERROR: Invalid command-line option: $1" >&2; exit 1; ;;
-        esac
+		esac
 done
 
 # Set default values
@@ -253,14 +253,14 @@ case "$IMAGE_TYPE" in
 		export DEBVERSION=$KALI_VERSION
 
 		if [ "$KALI_VARIANT" = "netinst" ]; then
-		    export DISKTYPE="NETINST"
+			export DISKTYPE="NETINST"
 		else
-		    export DISKTYPE="DVD"
+			export DISKTYPE="DVD"
 		fi
 		if [ -e .mirror ]; then
-		    kali_mirror=$(cat .mirror)
+			kali_mirror=$(cat .mirror)
 		else
-		    kali_mirror=http://archive.kali.org/kali/
+			kali_mirror=http://archive.kali.org/kali/
 		fi
 		if ! echo "$kali_mirror" | grep -q '/$'; then
 		    kali_mirror="$kali_mirror/"
@@ -283,12 +283,12 @@ case "$IMAGE_TYPE" in
 		# Run simple-cdd
 		cd simple-cdd
 		run_and_log build-simple-cdd \
-		    --verbose \
-		    --debug \
-		    --force-root \
-		    --conf simple-cdd.conf \
-		    --dist $CODENAME \
-		    --debian-mirror $kali_mirror
+			--verbose \
+			--debug \
+			--force-root \
+			--conf simple-cdd.conf \
+			--dist $CODENAME \
+			--debian-mirror $kali_mirror
 		res=$?
 		cd ..
 		if [ $res -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
