@@ -274,10 +274,10 @@ case "$IMAGE_TYPE" in
 		export ARCHES=$KALI_ARCH
 		export ARCH=$KALI_ARCH
 		export DEBVERSION=$KALI_VERSION
-        debug "BASEDIR: $BASEDIR"
-        debug "ARCHES: $ARCHES"
-        debug "ARCH: $ARCH"
-        debug "DEBVERSION: $DEBVERSION"
+		debug "BASEDIR: $BASEDIR"
+		debug "ARCHES: $ARCHES"
+		debug "ARCH: $ARCH"
+		debug "DEBVERSION: $DEBVERSION"
 
 		if [ "$KALI_VARIANT" = "netinst" ]; then
 			export DISKTYPE="NETINST"
