@@ -294,6 +294,7 @@ case "$IMAGE_TYPE" in
 		if ! echo "$kali_mirror" | grep -q '/$'; then
 			kali_mirror="$kali_mirror/"
 		fi
+		debug "kali_mirror: $kali_mirror"
 
 		if [ "$NO_CLEAN" = "" ]; then
 			debug "Stage 0/2 - Clean"
