@@ -14,6 +14,7 @@ TARGET_DIR="$(dirname $0)/images"
 TARGET_SUBDIR=""
 SUDO="sudo"
 VERBOSE=""
+DEBUG=""
 HOST_ARCH=$(dpkg --print-architecture)
 
 image_name() {
@@ -87,11 +88,13 @@ default_version() {
 
 failure() {
 	echo "Build of $KALI_DIST/$KALI_VARIANT/$KALI_ARCH $IMAGE_TYPE image failed (see build.log for details)" >&2
+	echo "Log: $BUILD_LOG" >&2
 	exit 2
 }
 
 run_and_log() {
-	if [ -n "$VERBOSE" ]; then
+	if [ -n "$VERBOSE" ] || [ -n "$DEBUG" ]; then
+		echo "RUNNING: $@" >&2
 		"$@" 2>&1 | tee -a $BUILD_LOG
 	else
 		"$@" >>$BUILD_LOG 2>&1
@@ -99,10 +102,16 @@ run_and_log() {
 	return $?
 }
 
+debug() {
+		if [ -n "$DEBUG" ]; then
+				echo "DEBUG: $*" >&2
+		fi
+}
+
 # Allowed command line options
 . $(dirname $0)/.getopt.sh
 
-# Parsing command line options
+# Parsing command line options (see .getopt.sh)
 temp=$(getopt -o "$BUILD_OPTS_SHORT" -l "$BUILD_OPTS_LONG,get-image-path" -- "$@")
 eval set -- "$temp"
 while true; do
@@ -111,8 +120,10 @@ while true; do
 		-p|--proposed-updates) OPT_pu="1"; shift 1; ;;
 		-a|--arch) KALI_ARCH="$2"; shift 2; ;;
 		-v|--verbose) VERBOSE="1"; shift 1; ;;
+		-D|--debug) DEBUG="1"; shift 1; ;;
 		-s|--salt) shift; ;;
 		--installer) IMAGE_TYPE="installer"; shift 1 ;;
+		--live) IMAGE_TYPE="live"; shift 1 ;;
 		--variant) KALI_VARIANT="$2"; shift 2; ;;
 		--version) KALI_VERSION="$2"; shift 2; ;;
 		--subdir) TARGET_SUBDIR="$2"; shift 2; ;;
@@ -125,12 +136,15 @@ done
 
 # Set default values
 KALI_ARCH=${KALI_ARCH:-$HOST_ARCH}
+debug "KALI_ARCH: $KALI_ARCH"
 
 if [ -z "$KALI_VERSION" ]; then
 	KALI_VERSION="$(default_version $KALI_DIST)"
 fi
+debug "KALI_VERSION: $KALI_VERSION"
 
 # Check parameters
+debug "HOST_ARCH: $HOST_ARCH"
 if [ "$HOST_ARCH" != "$KALI_ARCH" ] && [ "$IMAGE_TYPE" != "installer" ]; then
 	case "$HOST_ARCH/$KALI_ARCH" in
 		amd64/i386|i386/amd64)
@@ -149,10 +163,15 @@ if [ -n "$OPT_pu" ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --proposed-updates"
 	KALI_DIST="$KALI_DIST+pu"
 fi
+debug "KALI_CONFIG_OPTS: $KALI_CONFIG_OPTS"
+debug "CODENAME: $CODENAME"
+debug "KALI_DIST: $KALI_DIST"
 
 # Set sane PATH (cron seems to lack /sbin/ dirs)
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+debug "PATH: $PATH"
 
+debug "IMAGE_TYPE: $IMAGE_TYPE"
 case "$IMAGE_TYPE" in
 	live)
 		if [ ! -d "$(dirname $0)/kali-config/variant-$KALI_VARIANT" ]; then
@@ -164,12 +183,14 @@ case "$IMAGE_TYPE" in
 			echo "ERROR: You need live-build (>= 1:20151215kali1), you have $ver_live_build" >&2
 			exit 1
 		fi
+		debug "ver_live_build: $ver_live_build"
 
 		ver_debootstrap=$(dpkg-query -f '${Version}' -W debootstrap)
 		if dpkg --compare-versions "$ver_debootstrap" lt "1.0.97"; then
 			echo "ERROR: You need debootstrap (>= 1.0.97), you have $ver_debootstrap" >&2
 			exit 1
 		fi
+		debug "ver_debootstrap: $ver_debootstrap"
 	;;
 	installer)
 		if [ ! -d "$(dirname $0)/kali-config/installer-$KALI_VARIANT" ]; then
@@ -181,12 +202,14 @@ case "$IMAGE_TYPE" in
 			echo "ERROR: You need debian-cd (>= 3.1.28~kali1), you have $ver_debian_cd" >&2
 			exit 1
 		fi
+		debug "ver_debian_cd: $ver_debian_cd"
 
 		ver_simple_cdd=$(dpkg-query -f '${Version}' -W simple-cdd)
 		if dpkg --compare-versions "$ver_simple_cdd" lt 0.6.8~kali1; then
 			echo "ERROR: You need simple-cdd (>= 0.6.8~kali1), you have $ver_simple_cdd" >&2
 			exit 1
 		fi
+		debug "ver_simple_cdd: $ver_simple_cdd"
 	;;
 esac
 
@@ -199,7 +222,9 @@ if [ "$(whoami)" != "root" ]; then
 else
 	SUDO="" # We're already root
 fi
+debug "SUDO: $ACTION"
 
+debug "ACTION: $ACTION"
 if [ "$ACTION" = "get-image-path" ]; then
 	echo $(target_image_name $KALI_ARCH)
 	exit 0
@@ -209,25 +234,31 @@ cd $(dirname $0)
 mkdir -p $TARGET_DIR/$TARGET_SUBDIR
 
 IMAGE_NAME="$(image_name $KALI_ARCH)"
+debug "IMAGE_NAME: $IMAGE_NAME"
 
 # Don't quit on any errors now
 set +e
 
 BUILD_LOG=$(pwd)/build.log
+debug "BUILD_LOG: $BUILD_LOG"
 : > $BUILD_LOG
 
 case "$IMAGE_TYPE" in
 	live)
 		if [ "$NO_CLEAN" = "" ]; then
+			debug "Stage 0/3 - Clean"
 			run_and_log $SUDO lb clean --purge
 		fi
 
+		debug "Stage 1/3 - File(s)"
 		cp bin/kali-finish-install kali-config/common/includes.installer/
 		[ $? -eq 0 ] || failure
 
+		debug "Stage 2/3 - Config"
 		run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
 		[ $? -eq 0 ] || failure
 
+		debug "Stage 2/3 - Build"
 		run_and_log $SUDO lb build
 		if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
 			failure
@@ -251,12 +282,18 @@ case "$IMAGE_TYPE" in
 		export ARCHES=$KALI_ARCH
 		export ARCH=$KALI_ARCH
 		export DEBVERSION=$KALI_VERSION
+        debug "BASEDIR: $BASEDIR"
+        debug "ARCHES: $ARCHES"
+        debug "ARCH: $ARCH"
+        debug "DEBVERSION: $DEBVERSION"
 
 		if [ "$KALI_VARIANT" = "netinst" ]; then
 			export DISKTYPE="NETINST"
 		else
 			export DISKTYPE="DVD"
 		fi
+		debug "DISKTYPE: $DISKTYPE"
+
 		if [ -e .mirror ]; then
 			kali_mirror=$(cat .mirror)
 		else
@@ -275,6 +312,7 @@ case "$IMAGE_TYPE" in
 		# so ensure it's on the iso for arm64.
 		if [ "$KALI_ARCH" = "arm64" ]; then
 		    echo "grub-efi-arm64" >>simple-cdd/profiles/kali.downloads
+			debug "arm64 GRUB"
 		fi
 
 		# Update the postinst script
@@ -282,6 +320,7 @@ case "$IMAGE_TYPE" in
 
 		# Run simple-cdd
 		cd simple-cdd
+		debug "Stage 1/2 - Build"
 		run_and_log build-simple-cdd \
 			--verbose \
 			--debug \
@@ -300,6 +339,7 @@ esac
 # If a command fails, make the whole script exit
 set -e
 
+debug "Moving files"
 mv $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
 mv $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
 
