@@ -1,8 +1,11 @@
 #!/bin/bash
 
+# If a command fails, make the whole script exit
 set -e
 set -o pipefail  # Bashism
+# Use return code for any command errors in part of a pipe
 
+# Kali's default values
 KALI_DIST="kali-rolling"
 KALI_VERSION=""
 KALI_VARIANT="default"
@@ -97,6 +100,7 @@ run_and_log() {
 	return $?
 }
 
+# Allowed command line options
 . $(dirname $0)/.getopt.sh
 
 # Parsing command line options
@@ -203,6 +207,7 @@ cd $(dirname $0)
 mkdir -p $TARGET_DIR/$TARGET_SUBDIR
 
 IMAGE_NAME="$(image_name $KALI_ARCH)"
+# Don't quit on any errors now
 set +e
 BUILD_LOG=$(pwd)/build.log
 : > $BUILD_LOG
@@ -285,6 +290,7 @@ case "$IMAGE_TYPE" in
 	;;
 esac
 
+# If a command fails, make the whole script exit
 set -e
 mv $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
 mv $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
