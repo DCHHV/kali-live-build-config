@@ -2,8 +2,8 @@
 
 # If a command fails, make the whole script exit
 set -e
-set -o pipefail  # Bashism
 # Use return code for any command errors in part of a pipe
+set -o pipefail # Bashism
 
 # Kali's default values
 KALI_DIST="kali-rolling"
@@ -26,7 +26,6 @@ image_name() {
 		;;
 	esac
 }
-
 
 live_image_name() {
 	case "$KALI_ARCH" in
@@ -126,6 +125,7 @@ done
 
 # Set default values
 KALI_ARCH=${KALI_ARCH:-$HOST_ARCH}
+
 if [ -z "$KALI_VERSION" ]; then
 	KALI_VERSION="$(default_version $KALI_DIST)"
 fi
@@ -144,7 +144,7 @@ fi
 
 # Build parameters for lb config
 KALI_CONFIG_OPTS="--distribution $KALI_DIST -- --variant $KALI_VARIANT"
-CODENAME=$KALI_DIST  # for simple-cdd/debian-cd
+CODENAME=$KALI_DIST # for simple-cdd/debian-cd
 if [ -n "$OPT_pu" ]; then
 	KALI_CONFIG_OPTS="$KALI_CONFIG_OPTS --proposed-updates"
 	KALI_DIST="$KALI_DIST+pu"
@@ -164,6 +164,7 @@ case "$IMAGE_TYPE" in
 			echo "ERROR: You need live-build (>= 1:20151215kali1), you have $ver_live_build" >&2
 			exit 1
 		fi
+
 		ver_debootstrap=$(dpkg-query -f '${Version}' -W debootstrap)
 		if dpkg --compare-versions "$ver_debootstrap" lt "1.0.97"; then
 			echo "ERROR: You need debootstrap (>= 1.0.97), you have $ver_debootstrap" >&2
@@ -180,6 +181,7 @@ case "$IMAGE_TYPE" in
 			echo "ERROR: You need debian-cd (>= 3.1.28~kali1), you have $ver_debian_cd" >&2
 			exit 1
 		fi
+
 		ver_simple_cdd=$(dpkg-query -f '${Version}' -W simple-cdd)
 		if dpkg --compare-versions "$ver_simple_cdd" lt 0.6.8~kali1; then
 			echo "ERROR: You need simple-cdd (>= 0.6.8~kali1), you have $ver_simple_cdd" >&2
@@ -207,8 +209,10 @@ cd $(dirname $0)
 mkdir -p $TARGET_DIR/$TARGET_SUBDIR
 
 IMAGE_NAME="$(image_name $KALI_ARCH)"
+
 # Don't quit on any errors now
 set +e
+
 BUILD_LOG=$(pwd)/build.log
 : > $BUILD_LOG
 
@@ -217,10 +221,13 @@ case "$IMAGE_TYPE" in
 		if [ "$NO_CLEAN" = "" ]; then
 			run_and_log $SUDO lb clean --purge
 		fi
+
 		cp bin/kali-finish-install kali-config/common/includes.installer/
 		[ $? -eq 0 ] || failure
+
 		run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
 		[ $? -eq 0 ] || failure
+
 		run_and_log $SUDO lb build
 		if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
 			failure
@@ -261,9 +268,9 @@ case "$IMAGE_TYPE" in
 
 		# Configure the kali profile with the packages we want
 		grep -v '^#' kali-config/installer-$KALI_VARIANT/packages \
-		    >simple-cdd/profiles/kali.downloads
+			> simple-cdd/profiles/kali.downloads
 		# Tasksel is required in the mirror for debian-cd
-		echo tasksel >>simple-cdd/profiles/kali.downloads
+		echo tasksel >> simple-cdd/profiles/kali.downloads
 		# Grub is the only supported bootloader on arm64
 		# so ensure it's on the iso for arm64.
 		if [ "$KALI_ARCH" = "arm64" ]; then
@@ -292,6 +299,7 @@ esac
 
 # If a command fails, make the whole script exit
 set -e
+
 mv $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
 mv $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
 
