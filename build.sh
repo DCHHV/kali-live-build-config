@@ -292,7 +292,7 @@ case "$IMAGE_TYPE" in
 			kali_mirror=http://archive.kali.org/kali/
 		fi
 		if ! echo "$kali_mirror" | grep -q '/$'; then
-		    kali_mirror="$kali_mirror/"
+			kali_mirror="$kali_mirror/"
 		fi
 
 		if [ "$NO_CLEAN" = "" ]; then
@@ -320,8 +320,8 @@ case "$IMAGE_TYPE" in
 		# Grub is the only supported bootloader on arm64
 		# so ensure it's on the iso for arm64.
 		if [ "$KALI_ARCH" = "arm64" ]; then
-		    echo "grub-efi-arm64" >>simple-cdd/profiles/kali.downloads
 			debug "arm64 GRUB"
+			echo "grub-efi-arm64" >> simple-cdd/profiles/kali.downloads
 		fi
 
 		# Run simple-cdd
