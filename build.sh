@@ -269,18 +269,6 @@ case "$IMAGE_TYPE" in
 		fi
 	;;
 	installer)
-		if [ "$NO_CLEAN" = "" ]; then
-			run_and_log $SUDO rm -rf simple-cdd/tmp
-			run_and_log $SUDO rm -rf simple-cdd/debian-cd
-		fi
-
-		# Setup custom debian-cd to make our changes
-		cp -aT /usr/share/debian-cd simple-cdd/debian-cd
-		# Keep 686-pae udebs as we changed the default from 686
-		# to 686-pae in the debian-installer images
-		sed -i -e '/686-pae/d' \
-		    simple-cdd/debian-cd/data/$CODENAME/exclude-udebs-i386
-
 		# Override some debian-cd environment variables
 		export BASEDIR=$(pwd)/simple-cdd/debian-cd
 		export ARCHES=$KALI_ARCH
@@ -307,6 +295,23 @@ case "$IMAGE_TYPE" in
 		    kali_mirror="$kali_mirror/"
 		fi
 
+		if [ "$NO_CLEAN" = "" ]; then
+			debug "Stage 0/2 - Clean"
+			run_and_log $SUDO rm -rf simple-cdd/tmp
+			run_and_log $SUDO rm -rf simple-cdd/debian-cd
+		fi
+
+		debug "Stage 1/2 - File(s)"
+		# Setup custom debian-cd to make our changes
+		cp -aT /usr/share/debian-cd simple-cdd/debian-cd
+		# Keep 686-pae udebs as we changed the default from 686
+		# to 686-pae in the debian-installer images
+		sed -i -e '/686-pae/d' \
+			simple-cdd/debian-cd/data/$CODENAME/exclude-udebs-i386
+
+		# Update the post-install script
+		cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
+
 		# Configure the kali profile with the packages we want
 		grep -v '^#' kali-config/installer-$KALI_VARIANT/packages \
 			> simple-cdd/profiles/kali.downloads
@@ -318,9 +323,6 @@ case "$IMAGE_TYPE" in
 		    echo "grub-efi-arm64" >>simple-cdd/profiles/kali.downloads
 			debug "arm64 GRUB"
 		fi
-
-		# Update the postinst script
-		cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
 
 		# Run simple-cdd
 		cd simple-cdd
