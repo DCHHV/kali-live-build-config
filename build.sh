@@ -171,6 +171,12 @@ debug "KALI_DIST: $KALI_DIST"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 debug "PATH: $PATH"
 
+if [ -e /etc/debian_version ]; then
+	debug "OS: $( cat /etc/debian_version )"
+else
+	echo "ERROR: Non Debin-based OS" >&2
+fi
+
 debug "IMAGE_TYPE: $IMAGE_TYPE"
 case "$IMAGE_TYPE" in
 	live)
