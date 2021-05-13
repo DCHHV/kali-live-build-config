@@ -276,7 +276,7 @@ set +e
 case "$IMAGE_TYPE" in
 	live)
 		debug "Stage 1/3 - File(s)"
-		run_and_log cp bin/kali-finish-install kali-config/common/includes.installer/
+		run_and_log cp kali-config/common/post-install/kali-finish-install kali-config/common/includes.installer/
 		[ $? -eq 0 ] || failure
 
 		debug "Stage 2/3 - Config"
@@ -329,7 +329,7 @@ case "$IMAGE_TYPE" in
 		[ $? -eq 0 ] || failure
 
 		# Update the post-install script
-		run_and_log cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
+		run_and_log cp kali-config/common/post-install/kali-finish-install simple-cdd/profiles/kali.postinst
 		[ $? -eq 0 ] || failure
 
 		# Configure the kali profile with the packages we want
