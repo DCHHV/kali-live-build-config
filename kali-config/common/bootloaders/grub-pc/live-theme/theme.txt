@@ -1,3 +1,4 @@
+# Live Image (UEFI boot)
 desktop-image: "../splash.png"
 title-color: "#ffffff"
 title-font: "DejaVu Sans Bold 16"

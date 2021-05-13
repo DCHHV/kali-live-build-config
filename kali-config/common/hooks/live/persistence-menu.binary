@@ -1,4 +1,5 @@
 #!/bin/sh
+# Live Image (BIOS boot)
 
 if [ ! -d isolinux ]; then
     cd binary
