@@ -12,4 +12,3 @@ label live-forensic
 	initrd /live/initrd.img
 	append boot=live username=kali hostname=kali systemd.swap=no noautomount
 END
-
