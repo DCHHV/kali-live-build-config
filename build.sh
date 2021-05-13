@@ -153,6 +153,11 @@ done
 
 # Set default values
 KALI_ARCH=${KALI_ARCH:-$HOST_ARCH}
+if [ "$KALI_ARCH" == "x64" ]; then
+	KALI_ARCH="amd64"
+elif [ "$KALI_ARCH" == "x86" ]; then
+	KALI_ARCH="i386"
+fi
 debug "KALI_ARCH: $KALI_ARCH"
 
 if [ -z "$KALI_VERSION" ]; then
