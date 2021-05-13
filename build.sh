@@ -106,11 +106,24 @@ debug() {
 		if [ -n "$DEBUG" ]; then
 				echo "DEBUG: $*" >&2
 		fi
+clean() {
+	debug "Cleaning"
+
+	# Live
+	run_and_log $SUDO lb clean --purge
+
+	# Installer
+	run_and_log $SUDO rm -rf simple-cdd/tmp
+	run_and_log $SUDO rm -rf simple-cdd/debian-cd
 }
 
 # Allowed command line options
 . $(dirname $0)/.getopt.sh
 
+BUILD_LOG=$(pwd)/build.log
+debug "BUILD_LOG: $BUILD_LOG"
+# Create empty file
+: > $BUILD_LOG
 # Parsing command line options (see .getopt.sh)
 temp=$(getopt -o "$BUILD_OPTS_SHORT" -l "$BUILD_OPTS_LONG,get-image-path" -- "$@")
 eval set -- "$temp"
@@ -128,6 +141,7 @@ while true; do
 		--version) KALI_VERSION="$2"; shift 2; ;;
 		--subdir) TARGET_SUBDIR="$2"; shift 2; ;;
 		--get-image-path) ACTION="get-image-path"; shift 1; ;;
+		--clean) ACTION="clean"; shift 1; ;;
 		--no-clean) NO_CLEAN="1"; shift 1 ;;
 		--) shift; break; ;;
 		*) echo "ERROR: Invalid command-line option: $1" >&2; exit 1; ;;
@@ -240,6 +254,13 @@ if [ "$ACTION" = "get-image-path" ]; then
 	exit 0
 fi
 
+if [ "$NO_CLEAN" = "" ]; then
+	clean
+fi
+if [ "$ACTION" = "clean" ]; then
+	exit 0
+fi
+
 cd $(dirname $0)
 mkdir -p $TARGET_DIR/$TARGET_SUBDIR
 
@@ -249,9 +270,6 @@ debug "IMAGE_NAME: $IMAGE_NAME"
 # Don't quit on any errors now
 set +e
 
-BUILD_LOG=$(pwd)/build.log
-debug "BUILD_LOG: $BUILD_LOG"
-: > $BUILD_LOG
 
 case "$IMAGE_TYPE" in
 	live)

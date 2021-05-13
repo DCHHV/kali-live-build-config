@@ -12,6 +12,7 @@
 #      --subdir <directory-name>
 #      --get-image-path
 #      --no-clean
+#      --clean
 
 BUILD_OPTS_SHORT="d:pa:vDs"
-BUILD_OPTS_LONG="distribution:,proposed-updates,arch:,verbose,debug,salt,installer,live,variant:,version:,subdir:,get-image-path,no-clean"
+BUILD_OPTS_LONG="distribution:,proposed-updates,arch:,verbose,debug,salt,installer,live,variant:,version:,subdir:,get-image-path,no-clean,clean"
