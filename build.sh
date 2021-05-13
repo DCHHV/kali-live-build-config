@@ -249,7 +249,7 @@ if [ "$(whoami)" != "root" ]; then
 else
 	SUDO="" # We're already root
 fi
-debug "SUDO: $ACTION"
+debug "SUDO: $SUDO"
 
 debug "ACTION: $ACTION"
 if [ "$ACTION" = "get-image-path" ]; then
