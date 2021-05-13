@@ -1,4 +1,4 @@
-## Folders
+# Directories
 .build/*
 binary/*
 binary.*/*
@@ -7,10 +7,9 @@ chroot/*
 config/*
 images/*
 local/*
-simple-cdd/debian-cd/*
 simple-cdd/images/*
 simple-cdd/tmp/*
-## Files
+# Files
 .mirror
 build.log
 chroot.files
@@ -24,11 +23,12 @@ live-image-*.contents
 live-image-*.files
 live-image-*.hybrid.iso.zsync
 live-image-*.packages
-## Files overwritten during build
+# Rverwritten due to build.sh
 kali-config/common/includes.installer/kali-finish-install
-simple-cdd/profiles/kali.postinst
+simple-cdd/debian-cd/*
 simple-cdd/profiles/kali.downloads
-## Temp
+simple-cdd/profiles/kali.postinst
+# Miscellaneous
 .lock
 .stage
 prepare.log
