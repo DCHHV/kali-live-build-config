@@ -275,11 +275,6 @@ set +e
 
 case "$IMAGE_TYPE" in
 	live)
-		if [ "$NO_CLEAN" = "" ]; then
-			debug "Stage 0/3 - Clean"
-			run_and_log $SUDO lb clean --purge
-		fi
-
 		debug "Stage 1/3 - File(s)"
 		run_and_log cp bin/kali-finish-install kali-config/common/includes.installer/
 		[ $? -eq 0 ] || failure
@@ -321,12 +316,6 @@ case "$IMAGE_TYPE" in
 			kali_mirror="$kali_mirror/"
 		fi
 		debug "kali_mirror: $kali_mirror"
-
-		if [ "$NO_CLEAN" = "" ]; then
-			debug "Stage 0/2 - Clean"
-			run_and_log $SUDO rm -rf simple-cdd/tmp
-			run_and_log $SUDO rm -rf simple-cdd/debian-cd
-		fi
 
 		debug "Stage 1/2 - File(s)"
 		# Setup custom debian-cd to make our changes
