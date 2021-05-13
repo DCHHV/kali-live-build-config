@@ -251,6 +251,9 @@ else
 fi
 debug "SUDO: $SUDO"
 
+IMAGE_NAME="$(image_name $KALI_ARCH)"
+debug "IMAGE_NAME: $IMAGE_NAME"
+
 debug "ACTION: $ACTION"
 if [ "$ACTION" = "get-image-path" ]; then
 	echo $(target_image_name $KALI_ARCH)
@@ -266,9 +269,6 @@ fi
 
 cd $(dirname $0)
 mkdir -p $TARGET_DIR/$TARGET_SUBDIR
-
-IMAGE_NAME="$(image_name $KALI_ARCH)"
-debug "IMAGE_NAME: $IMAGE_NAME"
 
 # Don't quit on any errors now
 set +e
