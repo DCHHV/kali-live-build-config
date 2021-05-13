@@ -103,9 +103,11 @@ run_and_log() {
 }
 
 debug() {
-		if [ -n "$DEBUG" ]; then
-				echo "DEBUG: $*" >&2
-		fi
+	if [ -n "$DEBUG" ]; then
+		echo "DEBUG: $*" >&2
+	fi
+}
+
 clean() {
 	debug "Cleaning"
 
@@ -124,6 +126,7 @@ BUILD_LOG=$(pwd)/build.log
 debug "BUILD_LOG: $BUILD_LOG"
 # Create empty file
 : > $BUILD_LOG
+
 # Parsing command line options (see .getopt.sh)
 temp=$(getopt -o "$BUILD_OPTS_SHORT" -l "$BUILD_OPTS_LONG,get-image-path" -- "$@")
 eval set -- "$temp"
@@ -269,7 +272,6 @@ debug "IMAGE_NAME: $IMAGE_NAME"
 
 # Don't quit on any errors now
 set +e
-
 
 case "$IMAGE_TYPE" in
 	live)
