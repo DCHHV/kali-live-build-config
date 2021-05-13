@@ -26,7 +26,7 @@ terminal-font: "Unifont Regular 16"
         height = 35
         align = "center"
         color = "#ffffff"
-        text = "Kali Linux Live Menu (UEFI)"
+        text = "Kali Linux live menu (UEFI)"
         font = "DejaVu Sans Bold 16"
 }
 
