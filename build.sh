@@ -261,7 +261,7 @@ case "$IMAGE_TYPE" in
 		fi
 
 		debug "Stage 1/3 - File(s)"
-		cp bin/kali-finish-install kali-config/common/includes.installer/
+		run_and_log cp bin/kali-finish-install kali-config/common/includes.installer/
 		[ $? -eq 0 ] || failure
 
 		debug "Stage 2/3 - Config"
@@ -310,33 +310,32 @@ case "$IMAGE_TYPE" in
 
 		debug "Stage 1/2 - File(s)"
 		# Setup custom debian-cd to make our changes
-		cp -aT /usr/share/debian-cd simple-cdd/debian-cd
+		run_and_log cp -aT /usr/share/debian-cd simple-cdd/debian-cd
 		[ $? -eq 0 ] || failure
 
 		# Keep 686-pae udebs as we changed the default from 686
 		# to 686-pae in the debian-installer images
-		sed -i -e '/686-pae/d' \
+		run_and_log sed -i -e '/686-pae/d' \
 			simple-cdd/debian-cd/data/$CODENAME/exclude-udebs-i386
 		[ $? -eq 0 ] || failure
 
 		# Update the post-install script
-		cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
+		run_and_log cp bin/kali-finish-install simple-cdd/profiles/kali.postinst
 		[ $? -eq 0 ] || failure
 
 		# Configure the kali profile with the packages we want
-		grep -v '^#' kali-config/installer-$KALI_VARIANT/packages \
+		run_and_log grep -v '^#' kali-config/installer-$KALI_VARIANT/packages \
 			> simple-cdd/profiles/kali.downloads
 		[ $? -eq 0 ] || failure
 
 		# Tasksel is required in the mirror for debian-cd
-		echo tasksel >> simple-cdd/profiles/kali.downloads
+		run_and_log echo "tasksel" >> simple-cdd/profiles/kali.downloads
 		[ $? -eq 0 ] || failure
 
 		# Grub is the only supported bootloader on arm64
 		# so ensure it's on the iso for arm64.
 		if [ "$KALI_ARCH" = "arm64" ]; then
-			debug "arm64 GRUB"
-			echo "grub-efi-arm64" >> simple-cdd/profiles/kali.downloads
+			run_and_log echo "grub-efi-arm64" >> simple-cdd/profiles/kali.downloads
 			[ $? -eq 0 ] || failure
 		fi
 
@@ -362,7 +361,7 @@ esac
 set -e
 
 debug "Moving files"
-mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
-mv -f $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
+run_and_log mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
+run_and_log mv -f $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
 
 run_and_log echo -e "\n***\nGENERATED KALI IMAGE: $TARGET_DIR/$(target_image_name $KALI_ARCH)\n***"
