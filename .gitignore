@@ -25,6 +25,9 @@ live-image-*.files
 live-image-*.hybrid.iso.zsync
 live-image-*.packages
 simple-cdd/profiles/kali.downloads
+## Files overwritten during build
+kali-config/common/includes.installer/kali-finish-install
+simple-cdd/profiles/kali.postinst
 ## Temp
 .lock
 .stage
