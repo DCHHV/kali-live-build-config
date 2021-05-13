@@ -283,7 +283,7 @@ case "$IMAGE_TYPE" in
 		run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
 		[ $? -eq 0 ] || failure
 
-		debug "Stage 2/3 - Build"
+		debug "Stage 3/3 - Build"
 		run_and_log $SUDO lb build
 		if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
 			failure
