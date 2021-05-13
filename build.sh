@@ -280,15 +280,11 @@ set +e
 
 case "$IMAGE_TYPE" in
 	live)
-		debug "Stage 1/3 - File(s)"
-		run_and_log cp kali-config/common/post-install/kali-finish-install kali-config/common/includes.installer/
-		[ $? -eq 0 ] || failure
-
-		debug "Stage 2/3 - Config"
+		debug "Stage 1/2 - Config"
 		run_and_log lb config -a $KALI_ARCH $KALI_CONFIG_OPTS "$@"
 		[ $? -eq 0 ] || failure
 
-		debug "Stage 3/3 - Build"
+		debug "Stage 2/2 - Build"
 		run_and_log $SUDO lb build
 		if [ $? -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
 			failure
@@ -331,10 +327,6 @@ case "$IMAGE_TYPE" in
 		# to 686-pae in the debian-installer images
 		run_and_log sed -i -e '/686-pae/d' \
 			simple-cdd/debian-cd/data/$CODENAME/exclude-udebs-i386
-		[ $? -eq 0 ] || failure
-
-		# Update the post-install script
-		run_and_log cp kali-config/common/post-install/kali-finish-install simple-cdd/profiles/kali.postinst
 		[ $? -eq 0 ] || failure
 
 		# Configure the kali profile with the packages we want

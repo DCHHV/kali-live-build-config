@@ -23,11 +23,9 @@ live-image-*.contents
 live-image-*.files
 live-image-*.hybrid.iso.zsync
 live-image-*.packages
-# Rverwritten due to build.sh
-kali-config/common/includes.installer/kali-finish-install
+# Overwritten due to build.sh
 simple-cdd/debian-cd/*
 simple-cdd/profiles/kali.downloads
-simple-cdd/profiles/kali.postinst
 # Miscellaneous
 .lock
 .stage
