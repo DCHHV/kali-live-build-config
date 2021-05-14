@@ -1,19 +1,32 @@
-binary.*
-prepare.log
-binary
-images
-cache
-chroot
+# Directories
+.build/*
+binary/*
+binary.*/*
+cache/*
+chroot/*
+config/*
+images/*
+local/*
+simple-cdd/images/*
+simple-cdd/tmp/*
+# Files
+.mirror
+build.log
+chroot.files
 chroot.packages.install
 chroot.packages.live
-.mirror
-.stage
-.lock
-.build/
 config/binary
 config/bootstrap
 config/common
 config/source
-simple-cdd/debian-cd
+live-image-*.contents
+live-image-*.files
+live-image-*.hybrid.iso.zsync
+live-image-*.packages
+# Overwritten due to build.sh
+simple-cdd/debian-cd/*
 simple-cdd/profiles/kali.downloads
-simple-cdd/tmp
+# Miscellaneous
+.lock
+.stage
+prepare.log

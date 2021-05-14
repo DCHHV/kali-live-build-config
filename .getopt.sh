@@ -1,13 +1,18 @@
-# Supported options are:
+# Supported options are (from build.sh):
 # -d | --distribution <distro>
 # -p | --proposed-updates
 # -a | --arch <architecture>
-#      --subdir <directory-name>
-#      --version <version>
-#      --variant <variant>
-#      --installer
-#      --no-clean
 # -v | --verbose
+# -D | --debug
 # -s | --salt
-BUILD_OPTS_SHORT="d:pa:vs"
-BUILD_OPTS_LONG="distribution:,proposed-updates,arch:,subdir:,version:,variant:,verbose,salt,installer,no-clean"
+#      --installer
+#      --live
+#      --variant <variant>
+#      --version <version>
+#      --subdir <directory-name>
+#      --get-image-path
+#      --no-clean
+#      --clean
+
+BUILD_OPTS_SHORT="d:pa:vDs"
+BUILD_OPTS_LONG="distribution:,proposed-updates,arch:,verbose,debug,salt,installer,live,variant:,version:,subdir:,get-image-path,no-clean,clean"
