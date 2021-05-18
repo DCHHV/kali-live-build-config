@@ -115,8 +115,8 @@ clean() {
 	run_and_log $SUDO lb clean --purge
 
 	# Installer
-	run_and_log $SUDO rm -rfv simple-cdd/tmp
-	run_and_log $SUDO rm -rfv simple-cdd/debian-cd
+	run_and_log $SUDO rm -rfv $(pwd)/simple-cdd/tmp
+	run_and_log $SUDO rm -rfv $(pwd)/simple-cdd/debian-cd
 }
 
 # Allowed command line options
