@@ -107,9 +107,9 @@ esac
 # Drop all files that a former run might have put into place
 for file in $(cd kali-config && find ./common ./variant-* -type f); do
     file=${file#./*/}
-    rm -f config/$file
+    rm -fv config/$file
 done
-rm -f config/archives/kali-proposed-updates.list.*
+rm -fv config/archives/kali-proposed-updates.list.*
 
 # Copy over all files from official kali configuration
 cp -rT kali-config/common config
