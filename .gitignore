@@ -5,7 +5,7 @@ binary.*/*
 cache/*
 chroot/*
 config/*
-images/*
+images
 local/*
 simple-cdd/images/*
 simple-cdd/tmp/*
