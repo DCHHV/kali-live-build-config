@@ -116,12 +116,12 @@ clean() {
 	#run_and_log $SUDO umount -l $(pwd)/chroot/proc
 	#run_and_log $SUDO umount -l $(pwd)/chroot/dev/pts
 	#run_and_log $SUDO umount -l $(pwd)/chroot/sys
-	#run_and_log $SUDO rm -rfv $(pwd)/chroot
-	#run_and_log $SUDO rm -rfv $(pwd)/binary
+	#run_and_log $SUDO rm -rf $(pwd)/chroot
+	#run_and_log $SUDO rm -rf $(pwd)/binary
 
 	# Installer
-	run_and_log $SUDO rm -rfv $(pwd)/simple-cdd/tmp
-	run_and_log $SUDO rm -rfv $(pwd)/simple-cdd/debian-cd
+	run_and_log $SUDO rm -rf $(pwd)/simple-cdd/tmp
+	run_and_log $SUDO rm -rf $(pwd)/simple-cdd/debian-cd
 }
 
 # Allowed command line options
