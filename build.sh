@@ -113,6 +113,11 @@ clean() {
 
 	# Live
 	run_and_log $SUDO lb clean --purge
+	#run_and_log $SUDO umount -l $(pwd)/chroot/proc
+	#run_and_log $SUDO umount -l $(pwd)/chroot/dev/pts
+	#run_and_log $SUDO umount -l $(pwd)/chroot/sys
+	#run_and_log $SUDO rm -rfv $(pwd)/chroot
+	#run_and_log $SUDO rm -rfv $(pwd)/binary
 
 	# Installer
 	run_and_log $SUDO rm -rfv $(pwd)/simple-cdd/tmp
