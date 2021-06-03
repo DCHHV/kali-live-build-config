@@ -95,9 +95,9 @@ failure() {
 run_and_log() {
 	if [ -n "$VERBOSE" ] || [ -n "$DEBUG" ]; then
 		echo "RUNNING: $@" >&2
-		"$@" 2>&1 | tee -a $BUILD_LOG
+		"$@" 2>&1 | tee -a "$BUILD_LOG"
 	else
-		"$@" >>$BUILD_LOG 2>&1
+		"$@" >>"$BUILD_LOG" 2>&1
 	fi
 	return $?
 }
@@ -120,17 +120,17 @@ clean() {
 	#run_and_log $SUDO rm -rf $(pwd)/binary
 
 	# Installer
-	run_and_log $SUDO rm -rf $(pwd)/simple-cdd/tmp
-	run_and_log $SUDO rm -rf $(pwd)/simple-cdd/debian-cd
+	run_and_log $SUDO rm -rf "$(pwd)/simple-cdd/tmp"
+	run_and_log $SUDO rm -rf "$(pwd)/simple-cdd/debian-cd"
 }
 
 # Allowed command line options
 . $(dirname $0)/.getopt.sh
 
-BUILD_LOG=$(pwd)/build.log
+BUILD_LOG="$(pwd)/build.log"
 debug "BUILD_LOG: $BUILD_LOG"
 # Create empty file
-: > $BUILD_LOG
+: > "$BUILD_LOG"
 
 # Parsing command line options (see .getopt.sh)
 temp=$(getopt -o "$BUILD_OPTS_SHORT" -l "$BUILD_OPTS_LONG,get-image-path" -- "$@")
@@ -297,7 +297,7 @@ case "$IMAGE_TYPE" in
 	;;
 	installer)
 		# Override some debian-cd environment variables
-		export BASEDIR=$(pwd)/simple-cdd/debian-cd
+		export BASEDIR="$(pwd)/simple-cdd/debian-cd"
 		export ARCHES=$KALI_ARCH
 		export ARCH=$KALI_ARCH
 		export DEBVERSION=$KALI_VERSION
@@ -374,6 +374,6 @@ set -e
 
 debug "Moving files"
 run_and_log mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
-run_and_log mv -f $BUILD_LOG $TARGET_DIR/$(target_build_log $KALI_ARCH)
+run_and_log mv -f "$BUILD_LOG" $TARGET_DIR/$(target_build_log $KALI_ARCH)
 
 run_and_log echo -e "\n***\nGENERATED KALI IMAGE: $TARGET_DIR/$(target_image_name $KALI_ARCH)\n***"
