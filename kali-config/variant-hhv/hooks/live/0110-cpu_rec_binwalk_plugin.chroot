@@ -1,0 +1,11 @@
+#!/bin/sh
+
+TMPDIR=$(mktemp -d)
+git clone https://github.com/airbus-seclab/cpu_rec.git ${TMPDIR}
+cd ${TMPDIR}
+# Installation for binwalk is to just copy the main py and folder to root dir
+mkdir -p /root/.config/binwalk/modules
+mv cpu_rec.py cpu_rec_corpus /root/.config/binwalk/modules/
+# If the build directory is not removed, it remains in the squashfs
+cd -
+rm -rfv ${TMPDIR}
