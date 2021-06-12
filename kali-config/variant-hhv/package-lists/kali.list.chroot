@@ -13,6 +13,9 @@ libqt5serialport5-dev
 qttools5-dev
 qtdeclarative5-dev
 
+# rbasefind is a rust application
+cargo
+
 # You always want those
 # Hard to find in documentation, but "kali-desktop-live" is a metapackage for
 # the following nice-to-have desktop functions: 

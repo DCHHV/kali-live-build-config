@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TMPDIR=$(mktemp -d)
+git clone https://github.com/sgayou/rbasefind.git ${TMPDIR}
+cd ${TMPDIR}
+cargo build
+cargo install --path . --root /usr/local/
+# If the build directory is not removed, it remains in the squashfs
+cd -
+rm -rfv ${TMPDIR}
