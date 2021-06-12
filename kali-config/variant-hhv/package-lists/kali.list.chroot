@@ -37,10 +37,10 @@ openssh-server
 # www-browser | www-browser:any, dbus-user-session, xserver-xorg-legacy
 kali-desktop-xfce
 
-# THESE ARE BROKEN, FIND REPLACEMENTS
 # Kali packages
-#kali-linux-sdr
-#kali-linux-rfid
+kali-tools-sdr
+kali-tools-rfid
+kali-tools-hardware
 
 # Hardware tools
 # Logic analyzer and protocol decoder software suite
@@ -71,8 +71,6 @@ dfu-programmer
 dfu-util
 # tool for documenting hardware designs through timing diagrams
 drawtiming
-# A graphical frontend to the Spice simulator
-# easyspice
 # Emulator and simulator for 8051 microcontrollers
 emu8051
 # create and flash firmware files to ESP8266 or ESP32 chips
@@ -80,7 +78,9 @@ esptool
 # utility to configure SRAM based ALTERA devices
 flexloader
 # VHDL simulator for Linux
-# freehdl
+ghdl
+ghdl-common
+ghdl-gcc
 # graphical logic circuit simulator
 glogic
 # GNU Circuit Analysis package
@@ -91,12 +91,10 @@ gnusim8085
 gpsim
 # GNU PIC utilities
 gputils
-# Graphical user interface for gnucap and ngspice
-# gspiceui
 # VCD (Value Change Dump) file waveform viewer
 gtkwave
 # waveform viewer eg for spice simulators
-# gwave # Not available in kali-rolling
+gwave
 # switch-level simulator
 irsim
 # interface to NXP LPC Microcontrollers ISP serial interface
@@ -105,8 +103,6 @@ lpctools
 mspdebug
 # Spice circuit simulator
 ngspice
-# Microchip PIC serial programmer software
-# picprog
 # tool to decode RFID tag data
 rfdump
 # In-System Programmer for 8051 MCUs using usbtiny
@@ -118,7 +114,9 @@ sdcc
 # Micro-controller simulator for SDCC
 sdcc-ucsim
 # Atmel AVR simulator
-#simulavr
+simavr
+# Simple real time electronic circuit simulator
+simulide
 # MIPS R2000/R3000 emulator
 spim
 # STM32 chip flashing utility using a serial bootloader
@@ -128,8 +126,6 @@ stm32flash
 qemu
 # JTAG programmer for various flash parts and boards
 urjtag
-# Firmware programming tool for the USBprog hardware
-# usbprog
 # Icarus verilog compiler
 iverilog
 
@@ -212,24 +208,6 @@ fritzing
 fritzing-data
 # Easy-to-use electronic design software (parts files)
 fritzing-parts
-# GPL EDA -- Electronics design software (metapackage)
-# geda
-# GPL EDA -- Electronics design software (example designs)
-# geda-examples
-# GPL EDA -- Electronics design software (attribute editor)
-#geda-gattrib
-# GPL EDA -- Electronics design software (netlister)
-#geda-gnetlist
-# GPL EDA -- Electronics design software (schematic editor)
-#geda-gschem
-# GPL EDA -- Electronics design software (symbol checker)
-#geda-gsymcheck
-# GPL EDA -- Electronics design software (symbols library)
-#geda-symbols
-# GPL EDA -- Electronics design software (utilities)
-#geda-utils
-# GPL EDA -- Electronics design software -- gschem -> PCB workflow GUI
-#geda-xgsch2pcb
 # Gerber file viewer for PCB design
 gerbv
 # Placement for digital VLSI design
@@ -265,14 +243,8 @@ kicad-symbols
 kicad-templates
 # Control programs for the Per Vices Noctar IQ demodulator board
 langford-utils
-# GPL EDA -- Electronics design software (data files)
-#libgeda-common
-# GPL EDA -- Electronics design software (library files)
-#libgeda42
 # utility library for talking to the LEGO Mindstorms NXT brick
 libnxt
-# tool to generate Smith Charts
-# linsmith Removed from kali-rolling, depends on libgnomeui
 # Flash programmer for Renesas M16C and R8C microcontrollers
 m16c-flash
 # VLSI layout tool
@@ -283,8 +255,6 @@ mcu8051ide
 nbc
 # simulator for the Microchip PIC16C84 microcontroller
 nitpic
-# Improved firmware for LEGO Mindstorms NXT bricks
-#nxt-firmware
 # Open Lighting Architecture
 ola
 # shell utilities to talk to an 1-Wire owserver
@@ -320,7 +290,7 @@ pd-pduino
 # interfacing with your XBee from within Pure Data (Pd)
 pd-xbee
 # Transitional dummy package for python-pyvisa
-# pyvisa
+python3-pyvisa
 # Electric schematic editor
 qelectrotech
 # symbols needed for qelectrotech
@@ -337,8 +307,6 @@ qflow-tech-osu035
 qflow-tech-osu050
 # Multi-level, over-the-cell maze router
 qrouter
-# symbolic analyzer and solver of linear analog circuits
-#qsapecng
 # simulator for Microchip PIC16F84 microcontroller
 simulpic
 # Utilities for using the Wi-Spy USB spectrum analyzer hardware
@@ -385,8 +353,6 @@ ixo-usb-jtag
 # openwince-jtag Conflicts with urjtag
 # Tools for flashing Rockchip devices
 rkflashtool
-# GUI firmware programming tool for the USBprog hardware
-# usbprog-gui
 
 # Other cross compilers
 gcc-aarch64-linux-gnu
@@ -397,7 +363,7 @@ gcc-arm-none-eabi
 gcc-h8300-hms
 gcc-hppa-linux-gnu
 gcc-hppa64-linux-gnu
-#gcc-m68hc1x
+binutils-m68hc1x
 gcc-m68k-linux-gnu
 gcc-mips-linux-gnu
 gcc-mips64-linux-gnuabi64
