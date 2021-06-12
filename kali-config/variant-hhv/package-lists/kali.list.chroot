@@ -4,6 +4,7 @@
 
 # Required for building the minipro binary
 libusb-1.0-0-dev
+pkg-config
 
 # Qt5.8.X or better required for SavvyCAN, plus other libs
 qtbase5-dev

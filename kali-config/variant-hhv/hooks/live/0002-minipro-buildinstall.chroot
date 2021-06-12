@@ -1,7 +1,7 @@
 #!/bin/sh
 
 TMPDIR=$(mktemp -d)
-git clone https://gitlab.com/DavidGriffith/minipro/ ${TMPDIR}
+git clone https://gitlab.com/DavidGriffith/minipro.git ${TMPDIR}
 cd ${TMPDIR}
 make && make install
 # If the build directory is not removed, it remains in the squashfs
