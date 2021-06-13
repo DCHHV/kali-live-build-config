@@ -8,7 +8,7 @@ set -o pipefail # Bashism
 if [ -e .mirror ]; then
     kali_mirror=$(cat .mirror)
 else
-    kali_mirror=http://archive.kali.org/kali
+    kali_mirror=http://kali.download/kali
 fi
 
 ### DO NOT EDIT THE REST OF THIS FILE ###
@@ -64,6 +64,10 @@ eval set -- "$temp"
 
 # Resolve release name
 dist=$(curl -s $kali_mirror/dists/$dist/Release | awk '/^Codename:/ {print $2}')
+if [ -z "$dist" ]; then
+	echo "ERROR: Build release could not be resolved"
+	exit 1
+fi
 
 # live-build doesn't work if --parent-debian-distribution is unknown of
 # debian-cd => we have to put a symlink so that it deals with kali like sid
@@ -84,6 +88,9 @@ case "$arch" in
     ;;
     i386)
 	lb_opts="$lb_opts --debian-installer $install_option --linux-flavours 686-pae"
+    ;;
+    arm64)
+	lb_opts="$lb_opts --bootloaders grub-efi --uefi-secure-boot disable"
     ;;
     armel|armhf)
 	lb_opts="$lb_opts --binary-images hdd --binary-filesystem ext4 --chroot-filesystem none"
@@ -106,15 +113,14 @@ esac
 # Setup configuration files from variant and options
 
 # Drop all files that a former run might have put into place
-for file in $(cd kali-config && find . -type f); do
+for file in $(cd kali-config && find ./common ./variant-* -type f); do
     file=${file#./*/}
-    rm -f config/$file
+    rm -fv config/$file
 done
-rm -f config/archives/kali-proposed-updates.list.*
+rm -fv config/archives/kali-proposed-updates.list.*
 
 # Copy over all files from official kali configuration
 cp -rT kali-config/common config
-[ ! -d kali-config/release-$dist ] || cp -rTL kali-config/release-$dist config
 [ ! -d kali-config/variant-$variant ] || cp -rTL kali-config/variant-$variant config
 
 if [ -n "$enable_pu" ]; then
@@ -144,8 +150,8 @@ lb config noauto \
 	--iso-volume "HHV Kali Live" \
 	--linux-packages linux-image \
 	--memtest memtest86 \
-	--bootappend-live "boot=live components splash username=root hostname=kali" \
-	--bootappend-live-failsafe "boot=live components username=root hostname=kali memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
+	--bootappend-live "boot=live components quiet splash noeject" \
+	--bootappend-live-failsafe "boot=live components noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
 	--bootappend-install "net.ifnames=0" \
 	--security false \
 	$lb_opts \

@@ -1,0 +1,42 @@
+#!/bin/sh
+
+configure_zsh() {
+    # Stop if zsh is not present
+    if [ ! -x /usr/bin/zsh ]; then
+	return
+    fi
+    # Stop if user has opted out of zsh
+    if echo "${LIVE_CONFIG_CMDLINE}" | grep -qs 'nozsh'; then
+	return
+    fi
+    chsh --shell /usr/bin/zsh kali
+    chsh --shell /usr/bin/zsh root
+}
+
+configure_usergroups() {
+    addgroup --system kaboxer || true  # Ensures the group exists
+    addgroup --system wireshark || true  # Ensures the group exists
+    # kaboxer - for kaboxer
+    # dialout - for serial port access
+    # wireshark - capture sessions without being root
+    kali_groups="kaboxer,dialout,wireshark"
+
+    usermod -a -G $kali_groups kali
+}
+
+# Avoid configuring multiple times in case persistence is enabled
+if [ -e /var/lib/live/config/kali-user-setup ]; then
+    exit 0
+fi
+
+# Set "kali" as password for the user kali
+usermod -p 'AqLUsDitNnTsw' kali
+
+# Change default shell to zsh
+configure_zsh
+
+# Add kali user to additional groups
+configure_usergroups
+
+# Remember that this script has been run
+touch /var/lib/live/config/kali-user-setup

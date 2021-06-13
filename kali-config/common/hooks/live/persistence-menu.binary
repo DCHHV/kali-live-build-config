@@ -1,4 +1,5 @@
 #!/bin/sh
+# Live Image (BIOS boot)
 
 if [ ! -d isolinux ]; then
     cd binary
@@ -7,16 +8,14 @@ fi
 cat >>isolinux/live.cfg <<END
 
 label live-persistence
-    menu label ^Live USB Persistence              (check kali.org/prst)
+    menu label Live ^USB Persistence              (check kali.org/prst)
     linux /live/vmlinuz
     initrd /live/initrd.img
-    append boot=live noconfig=sudo username=root hostname=kali persistence
+    append boot=live username=kali hostname=kali persistence
 
 label live-encrypted-persistence
-    menu label ^Live USB Encrypted Persistence    (check kali.org/prst)
+    menu label Live USB ^Encrypted Persistence    (check kali.org/prst)
     linux /live/vmlinuz
     initrd /live/initrd.img
-    append boot=live persistent=cryptsetup persistence-encryption=luks noconfig=sudo username=root hostname=kali persistence
-
+    append boot=live persistent=cryptsetup persistence-encryption=luks username=kali hostname=kali persistence
 END
-
