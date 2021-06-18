@@ -58,6 +58,8 @@ avrdude
 binwalk
 # free and advanced command line hexadecimal editor
 radare2
+# GUI for it (this might get fully replaced later with cutter/rizin?)
+radare2-cutter
 # Open on-chip JTAG debug solution for ARM and MIPS systems
 openocd
 # AVR development board IDE and built-in libraries
@@ -373,3 +375,8 @@ gcc-mips64-linux-gnuabi64
 gcc-mips64el-linux-gnuabi64
 gcc-mipsel-linux-gnu
 
+# Audacity for wave analysis
+audacity
+
+# gdb support for multiple architectures
+gdb-multiarch
