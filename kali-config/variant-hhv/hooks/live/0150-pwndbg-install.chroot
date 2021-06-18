@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TMPDIR=$(mktemp -d)
+git clone https://github.com/pwndbg/pwndbg.git ${TMPDIR}
+cd ${TMPDIR}
+./setup.sh
+# If the build directory is not removed, it remains in the squashfs
+cd -
+rm -rfv ${TMPDIR}
