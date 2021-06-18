@@ -1,0 +1,9 @@
+#!/bin/sh
+
+TMPDIR=$(mktemp -d)
+git clone https://github.com/jopohl/urh.git ${TMPDIR}
+cd ${TMPDIR}
+python3 setup.py install
+# If the build directory is not removed, it remains in the squashfs
+cd -
+rm -rfv ${TMPDIR}
