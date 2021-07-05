@@ -201,7 +201,7 @@ debug "PATH: $PATH"
 if [ -e /etc/debian_version ]; then
 	debug "OS: $( cat /etc/debian_version )"
 else
-	echo "ERROR: Non Debin-based OS" >&2
+	echo "ERROR: Non Debian-based OS" >&2
 fi
 
 debug "IMAGE_TYPE: $IMAGE_TYPE"
