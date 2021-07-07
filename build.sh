@@ -43,7 +43,7 @@ installer_image_name() {
 	if [ "$KALI_VARIANT" = "netinst" ]; then
 		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-NETINST-1.iso"
 	else
-		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-DVD-1.iso"
+		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-BD-1.iso"
 	fi
 }
 
@@ -309,7 +309,7 @@ case "$IMAGE_TYPE" in
 		if [ "$KALI_VARIANT" = "netinst" ]; then
 			export DISKTYPE="NETINST"
 		else
-			export DISKTYPE="DVD"
+			export DISKTYPE="BD"
 		fi
 		debug "DISKTYPE: $DISKTYPE"
 
