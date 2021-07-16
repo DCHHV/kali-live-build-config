@@ -198,7 +198,9 @@ debug "KALI_DIST: $KALI_DIST"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 debug "PATH: $PATH"
 
-if [ -e /etc/debian_version ]; then
+if grep -q -e "^ID=debian" -e "^ID_LIKE=debian" /usr/lib/os-release; then
+	debug "OS: $( . /usr/lib/os-release && echo $NAME $VERSION )"
+elif [ -e /etc/debian_version ]; then
 	debug "OS: $( cat /etc/debian_version )"
 else
 	echo "ERROR: Non Debian-based OS" >&2
