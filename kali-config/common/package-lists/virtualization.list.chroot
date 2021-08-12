@@ -8,3 +8,4 @@ hyperv-daemons
 #endif
 qemu-guest-agent
 spice-vdagent
+xrdp
