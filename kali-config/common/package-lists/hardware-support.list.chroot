@@ -8,3 +8,12 @@
 firmware-b43legacy-installer
 firmware-b43-installer
 #endif
+
+##
+## Make sure we install as many video drivers as we can. Note that
+## this package needs to be explicitly listed if we want to be sure that
+## it's installed. Installing xserver-xorg is not enough to make sure,
+## due to its dependencies, defined as such:
+##  * xserver-xorg-video-all | xorg-driver-video
+##
+xserver-xorg-video-all
