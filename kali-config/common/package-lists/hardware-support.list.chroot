@@ -1,5 +1,5 @@
 ##
-## Add extra firmware (kali-linux-core depends on firmware we wants, but
+## Add extra firmware (kali-linux-headless depends on firmware we wants, but
 ## some can't be put there because they require network access... but we
 ## install those in the live image anyway since we have network access
 ## when we build the live ISO).

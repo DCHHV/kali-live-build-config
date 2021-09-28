@@ -4,6 +4,6 @@
 # This variant is not meant to be used with live-build but only with
 # simple-cdd and thus ./build.sh --installer --variant netinst
 
-# We still put kali-linux-core just to ensure that simple-cdd's mirror
+# We still put kali-linux-headless just to ensure that simple-cdd's mirror
 # contains the firmwares
-kali-linux-core
+kali-linux-headless
