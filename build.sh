@@ -124,6 +124,18 @@ clean() {
 	run_and_log $SUDO rm -rf "$(pwd)/simple-cdd/debian-cd"
 }
 
+print_help() {
+	echo "Usage: $0 [<option>...]"
+	echo
+	for x in $(echo "${BUILD_OPTS_LONG}" | sed 's_,_ _g'); do
+		x=$(echo $x | sed 's/:$/ <arg>/')
+		echo "  --${x}"
+	done
+	echo
+	echo "More information: https://www.kali.org/docs/development/live-build-a-custom-kali-iso/"
+	exit 0
+}
+
 # Allowed command line options
 . $(dirname $0)/.getopt.sh
 
@@ -143,6 +155,7 @@ while true; do
 		-v|--verbose) VERBOSE="1"; shift 1; ;;
 		-D|--debug) DEBUG="1"; shift 1; ;;
 		-s|--salt) shift; ;;
+		-h|--help) print_help; ;;
 		--installer) IMAGE_TYPE="installer"; shift 1 ;;
 		--live) IMAGE_TYPE="live"; shift 1 ;;
 		--variant) KALI_VARIANT="$2"; shift 2; ;;
