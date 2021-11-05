@@ -1,3 +1,0 @@
-# Temporary fix. Starting Kali 2021.4, this package is a dependency
-# of kali-desktop-live, and this file can be removed.
-cryptsetup-initramfs
