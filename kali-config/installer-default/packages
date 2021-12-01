@@ -10,7 +10,11 @@
 kali-linux-core
 kali-tools-top10
 kali-linux-default
-kali-linux-large
+
+# NOTE: We would like to provide kali-linux-large in our installer images
+# but we end up with ISO images that are too big for our CDN. So disable
+# it for now.
+# kali-linux-large
 
 # Graphical desktops
 kali-desktop-xfce
