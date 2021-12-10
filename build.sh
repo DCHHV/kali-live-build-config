@@ -166,7 +166,7 @@ while true; do
 		--no-clean) NO_CLEAN="1"; shift 1 ;;
 		--) shift; break; ;;
 		*) echo "ERROR: Invalid command-line option: $1" >&2; exit 1; ;;
-		esac
+	esac
 done
 
 # Set default values
