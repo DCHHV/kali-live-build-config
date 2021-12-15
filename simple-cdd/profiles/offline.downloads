@@ -11,3 +11,6 @@ xserver-xorg-video-vmware
 # Ensure unrar is available, otherwise the "unrar | unar" dependency
 # in kali-linux-headless ends up satisfied by the unar alternative
 unrar
+# Ensure pipewire-pulse is available so that when wireplumber gets
+# installed it can pull it as a recommends
+pipewire-pulse
