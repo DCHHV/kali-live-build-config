@@ -343,6 +343,9 @@ case "$IMAGE_TYPE" in
 		cp -aT /usr/share/debian-cd simple-cdd/debian-cd
 		[ $? -eq 0 ] || failure
 
+		# Use the same grub theme as in the live images
+		cp -f kali-config/common/bootloaders/grub-pc/grub-theme.in simple-cdd/debian-cd/data/$CODENAME/grub-theme.in
+
 		# Keep 686-pae udebs as we changed the default from 686
 		# to 686-pae in the debian-installer images
 		sed -i -e '/686-pae/d' \
@@ -392,3 +395,4 @@ run_and_log mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
 run_and_log mv -f "$BUILD_LOG" $TARGET_DIR/$(target_build_log $KALI_ARCH)
 
 run_and_log echo -e "\n***\nGENERATED KALI IMAGE: $TARGET_DIR/$(target_image_name $KALI_ARCH)\n***"
+
