@@ -1,7 +1,7 @@
 # Installer Image (UEFI boot)
 title-text: ""
 desktop-image: "../splash.png"
-desktop-color: "#2f5595"
+desktop-color: "#041838"
 terminal-left: "0"
 terminal-top: "0"
 terminal-width: "100%"
@@ -44,13 +44,13 @@ terminal-border: "0"
 }
 
 + label {
-  top = 39%-45
+  top = 31%
   left = 0
   width = 100%
   height = 35
   align = "center"
   color = "#ffffff"
-  font = "DejaVu Sans Bold 16"
+  font = "Sans 16"
   text = "Kali Linux installer menu (UEFI mode)"
 }
 
@@ -58,12 +58,14 @@ terminal-border: "0"
   left = 14%
   width = 73%
   top = 39%
-  height = 39%
+  height = 42%
   item_color = "#f3f3f3"
   selected_item_color = "#ffffff"
   item_height = 36
   item_padding = 0
   item_spacing = 4
+  icon_width = 0
+  icon_height = 0
   selected_item_pixmap_style = "select_*.png"
 }
 
