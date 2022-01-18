@@ -344,6 +344,7 @@ case "$IMAGE_TYPE" in
 		[ $? -eq 0 ] || failure
 
 		# Use the same grub theme as in the live images
+		# Until debian-cd is smart enough: http://bugs.debian.org/1003927
 		cp -f kali-config/common/bootloaders/grub-pc/grub-theme.in simple-cdd/debian-cd/data/$CODENAME/grub-theme.in
 
 		# Keep 686-pae udebs as we changed the default from 686
