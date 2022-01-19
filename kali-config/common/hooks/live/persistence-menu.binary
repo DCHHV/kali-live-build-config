@@ -19,3 +19,5 @@ label live-encrypted-persistence
     initrd /live/initrd.img
     append boot=live persistent=cryptsetup persistence-encryption=luks username=kali hostname=kali persistence
 END
+
+sed -i isolinux/menu.cfg -e 's|menu title Boot menu|menu title Kali Linux live menu (BIOS mode)|'
