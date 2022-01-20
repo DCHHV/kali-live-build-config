@@ -1,4 +1,4 @@
-# Live Image (UEFI boot)
+#/* Live Image (UEFI boot) */
 title-text: ""
 desktop-image: "../splash.png"
 desktop-color: "#041838"

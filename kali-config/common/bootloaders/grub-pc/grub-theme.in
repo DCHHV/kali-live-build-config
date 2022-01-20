@@ -1,4 +1,4 @@
-# Installer Image (UEFI boot)
+#/* Installer Image (UEFI boot) */
 title-text: ""
 desktop-image: "../splash.png"
 desktop-color: "#041838"
