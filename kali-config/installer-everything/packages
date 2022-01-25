@@ -1,8 +1,5 @@
 # Installer image with kali-linux-everything
 
-# But that image is not really useful, see
-# https://gitlab.com/kalilinux/internal/roadmap/-/issues/363#note_649803259
-
 # Metapackages
 # You can customize the set of Kali metapackages (groups of tools) available
 # in the installer ISO.
