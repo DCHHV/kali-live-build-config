@@ -14,3 +14,6 @@ unrar
 # Ensure pipewire-pulse is available so that when wireplumber gets
 # installed it can pull it as a recommends
 pipewire-pulse
+# Ensure speech-dispatcher recommends are available
+sound-icons
+speech-dispatcher-espeak-ng
