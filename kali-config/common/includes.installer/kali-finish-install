@@ -64,7 +64,7 @@ configure_usergroups() {
     # wireshark - capture sessions in wireshark
     kali_groups="adm,kaboxer,dialout,wireshark"
 
-    for user in $(get_user_list); do
+    for user in $(get_user_list | grep -xv root); do
 	echo "INFO: adding user '$user' to groups '$kali_groups'"
 	usermod -a -G "$kali_groups" $user || true
     done
