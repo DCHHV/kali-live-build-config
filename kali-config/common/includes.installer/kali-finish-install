@@ -51,22 +51,24 @@ configure_zsh() {
     done
 }
 
-# This is generically named in case we want to add other groups in the future.
 configure_usergroups() {
-    # Create the kaboxer group if needed
+    # Ensure those groups exist
     addgroup --system kaboxer || true
-    # Create the wireshark group if needed
     addgroup --system wireshark || true
 
     # adm - read access to log files
-    # kaboxer - for kaboxer
     # dialout - for serial access
+    # kaboxer - for kaboxer
+    # vboxsf - shared folders for virtualbox guest
     # wireshark - capture sessions in wireshark
-    kali_groups="adm,kaboxer,dialout,wireshark"
+    kali_groups="adm dialout kaboxer vboxsf wireshark"
 
     for user in $(get_user_list | grep -xv root); do
 	echo "INFO: adding user '$user' to groups '$kali_groups'"
-	usermod -a -G "$kali_groups" $user || true
+	for grp in $kali_groups; do
+	    getent group $grp >/dev/null || continue
+	    usermod -a -G $grp $user
+	done
     done
 }
 
