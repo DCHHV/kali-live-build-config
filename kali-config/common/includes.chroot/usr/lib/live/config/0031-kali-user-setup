@@ -21,8 +21,9 @@ configure_usergroups() {
     # adm - read access to log files
     # dialout - for serial port access
     # kaboxer - for kaboxer
+    # vboxsf - shared folders for virtualbox guest
     # wireshark - capture sessions without being root
-    kali_groups="adm dialout kaboxer wireshark"
+    kali_groups="adm dialout kaboxer vboxsf wireshark"
 
     for grp in $kali_groups; do
 	getent group $grp >/dev/null || continue

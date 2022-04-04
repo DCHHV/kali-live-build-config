@@ -59,8 +59,9 @@ configure_usergroups() {
     # adm - read access to log files
     # dialout - for serial access
     # kaboxer - for kaboxer
+    # vboxsf - shared folders for virtualbox guest
     # wireshark - capture sessions in wireshark
-    kali_groups="adm dialout kaboxer wireshark"
+    kali_groups="adm dialout kaboxer vboxsf wireshark"
 
     for user in $(get_user_list | grep -xv root); do
 	echo "INFO: adding user '$user' to groups '$kali_groups'"
