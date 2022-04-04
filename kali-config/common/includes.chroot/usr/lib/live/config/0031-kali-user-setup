@@ -22,9 +22,12 @@ configure_usergroups() {
     # dialout - for serial port access
     # kaboxer - for kaboxer
     # wireshark - capture sessions without being root
-    kali_groups="adm,dialout,kaboxer,wireshark"
+    kali_groups="adm dialout kaboxer wireshark"
 
-    usermod -a -G $kali_groups kali || true
+    for grp in $kali_groups; do
+	getent group $grp >/dev/null || continue
+	usermod -a -G $grp kali
+    done
 }
 
 # Avoid configuring multiple times in case persistence is enabled

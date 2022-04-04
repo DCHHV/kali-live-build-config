@@ -60,11 +60,14 @@ configure_usergroups() {
     # dialout - for serial access
     # kaboxer - for kaboxer
     # wireshark - capture sessions in wireshark
-    kali_groups="adm,dialout,kaboxer,wireshark"
+    kali_groups="adm dialout kaboxer wireshark"
 
     for user in $(get_user_list | grep -xv root); do
 	echo "INFO: adding user '$user' to groups '$kali_groups'"
-	usermod -a -G "$kali_groups" $user || true
+	for grp in $kali_groups; do
+	    getent group $grp >/dev/null || continue
+	    usermod -a -G $grp $user
+	done
     done
 }
 
