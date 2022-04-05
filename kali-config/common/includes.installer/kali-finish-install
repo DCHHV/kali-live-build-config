@@ -28,7 +28,7 @@ END
 get_user_list() {
     for user in $(cd /home && ls); do
 	if ! getent passwd "$user" >/dev/null; then
-	    echo "WARNING: user '$user' is invalid but /home/$user exists"
+	    echo "WARNING: user '$user' is invalid but /home/$user exists" >&2
 	    continue
 	fi
 	echo "$user"
