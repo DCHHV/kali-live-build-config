@@ -63,7 +63,7 @@ done
 eval set -- "$temp"
 
 # Resolve release name
-dist=$(curl -s $kali_mirror/dists/$dist/Release | awk '/^Codename:/ {print $2}')
+dist=$(wget -q -O- $kali_mirror/dists/$dist/Release | awk '/^Codename:/ {print $2}')
 if [ -z "$dist" ]; then
 	echo "ERROR: Build release could not be resolved"
 	exit 1
@@ -149,7 +149,7 @@ lb config noauto \
 	--iso-publisher "Kali" \
 	--iso-volume "HHV Kali Live" \
 	--linux-packages linux-image \
-	--memtest memtest86 \
+	--memtest memtest86+ \
 	--bootappend-live "boot=live components quiet splash noeject" \
 	--bootappend-live-failsafe "boot=live components noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
 	--bootappend-install "net.ifnames=0" \

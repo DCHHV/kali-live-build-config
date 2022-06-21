@@ -45,7 +45,7 @@ installer_image_name() {
 	if [ "$KALI_VARIANT" = "netinst" ]; then
 		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-NETINST-1.iso"
 	else
-		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-DVD-1.iso"
+		echo "simple-cdd/images/kali-$KALI_VERSION-$KALI_ARCH-BD-1.iso"
 	fi
 }
 
@@ -126,6 +126,18 @@ clean() {
 	run_and_log $SUDO rm -rf "$(pwd)/simple-cdd/debian-cd"
 }
 
+print_help() {
+	echo "Usage: $0 [<option>...]"
+	echo
+	for x in $(echo "${BUILD_OPTS_LONG}" | sed 's_,_ _g'); do
+		x=$(echo $x | sed 's/:$/ <arg>/')
+		echo "  --${x}"
+	done
+	echo
+	echo "More information: https://www.kali.org/docs/development/live-build-a-custom-kali-iso/"
+	exit 0
+}
+
 # Allowed command line options
 . $(dirname $0)/.getopt.sh
 
@@ -145,6 +157,7 @@ while true; do
 		-v|--verbose) VERBOSE="1"; shift 1; ;;
 		-D|--debug) DEBUG="1"; shift 1; ;;
 		-s|--salt) shift; ;;
+		-h|--help) print_help; ;;
 		--installer) IMAGE_TYPE="installer"; shift 1 ;;
 		--live) IMAGE_TYPE="live"; shift 1 ;;
 		--variant) KALI_VARIANT="$2"; shift 2; ;;
@@ -157,7 +170,7 @@ while true; do
 		--no-clean) NO_CLEAN="1"; shift 1 ;;
 		--) shift; break; ;;
 		*) echo "ERROR: Invalid command-line option: $1" >&2; exit 1; ;;
-		esac
+	esac
 done
 
 # Set default values
@@ -202,10 +215,12 @@ debug "KALI_DIST: $KALI_DIST"
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 debug "PATH: $PATH"
 
-if [ -e /etc/debian_version ]; then
+if grep -q -e "^ID=debian" -e "^ID_LIKE=debian" /usr/lib/os-release; then
+	debug "OS: $( . /usr/lib/os-release && echo $NAME $VERSION )"
+elif [ -e /etc/debian_version ]; then
 	debug "OS: $( cat /etc/debian_version )"
 else
-	echo "ERROR: Non Debin-based OS" >&2
+	echo "ERROR: Non Debian-based OS" >&2
 fi
 
 debug "IMAGE_TYPE: $IMAGE_TYPE"
@@ -313,7 +328,7 @@ case "$IMAGE_TYPE" in
 		if [ "$KALI_VARIANT" = "netinst" ]; then
 			export DISKTYPE="NETINST"
 		else
-			export DISKTYPE="DVD"
+			export DISKTYPE="BD"
 		fi
 		debug "DISKTYPE: $DISKTYPE"
 
@@ -331,6 +346,10 @@ case "$IMAGE_TYPE" in
 		# Setup custom debian-cd to make our changes
 		cp -aT /usr/share/debian-cd simple-cdd/debian-cd
 		[ $? -eq 0 ] || failure
+
+		# Use the same grub theme as in the live images
+		# Until debian-cd is smart enough: http://bugs.debian.org/1003927
+		cp -f kali-config/common/bootloaders/grub-pc/grub-theme.in simple-cdd/debian-cd/data/$CODENAME/grub-theme.in
 
 		# Keep 686-pae udebs as we changed the default from 686
 		# to 686-pae in the debian-installer images
@@ -381,3 +400,4 @@ run_and_log mv -f $IMAGE_NAME $TARGET_DIR/$(target_image_name $KALI_ARCH)
 run_and_log mv -f "$BUILD_LOG" $TARGET_DIR/$(target_build_log $KALI_ARCH)
 
 run_and_log echo -e "\n***\nGENERATED KALI IMAGE: $TARGET_DIR/$(target_image_name $KALI_ARCH)\n***"
+
