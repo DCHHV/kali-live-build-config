@@ -124,6 +124,7 @@ if [ -n "$enable_pu" ]; then
 fi
 
 lb config noauto \
+	--apt-indices=false \
 	--distribution "$dist" \
 	--debian-installer-distribution "$dist" \
 	--archive-areas "main contrib non-free" \
