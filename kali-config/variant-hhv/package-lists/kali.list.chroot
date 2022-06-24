@@ -51,7 +51,7 @@ sigrok
 # GNU C compiler (cross compiler for avr)
 gcc-avr
 # GNU Debugger for avr
-gdb-avr
+# gdb-avr 20220620 Seems to be broken in kali-rolling?
 # software for programming Atmel AVR microcontrollers
 avrdude
 # tool for searching binary images for embedded files and executable code
@@ -75,7 +75,7 @@ dfu-programmer
 # Device firmware update (DFU) USB programmer
 dfu-util
 # tool for documenting hardware designs through timing diagrams
-drawtiming
+# drawtiming 20220620 Seems currently broken
 # Emulator and simulator for 8051 microcontrollers
 emu8051
 # create and flash firmware files to ESP8266 or ESP32 chips
@@ -83,9 +83,9 @@ esptool
 # utility to configure SRAM based ALTERA devices
 flexloader
 # VHDL simulator for Linux
-ghdl
-ghdl-common
-ghdl-gcc
+# ghdl 20220620 Seems currently broken
+# ghdl-common
+# ghdl-gcc
 # graphical logic circuit simulator
 glogic
 # GNU Circuit Analysis package
@@ -101,7 +101,7 @@ gtkwave
 # waveform viewer eg for spice simulators
 gwave
 # switch-level simulator
-irsim
+# irsim 20220620 Seems currently broken
 # interface to NXP LPC Microcontrollers ISP serial interface
 lpctools
 # debugging tool for MSP430 microcontrollers
@@ -128,7 +128,8 @@ spim
 stm32flash
 
 # fast processor emulator
-qemu
+qemu-system
+qemu-user
 # JTAG programmer for various flash parts and boards
 urjtag
 # Icarus verilog compiler
@@ -162,9 +163,9 @@ guvcview
 # Altus Metrum firmware and utilities
 altos
 # Place and route tool for iCE40 family FPGAs
-arachne-pnr
+# arachne-pnr 20220620 Seems currently broken
 # Chip db files for arachne-pnr
-arachne-pnr-chipdb
+# arachne-pnr-chipdb
 # Platform files for Arduino to run on ATmega1284P
 arduino-mighty-1284p
 # Arbitrary Transmission Line Calculator
@@ -190,7 +191,7 @@ canmatrix-utils
 # C Compiler for TI/Chipcon 8051-based RF SOCs
 # cc1111  Conflicts with sdcc
 # Verilog code coverage analysis tool
-covered
+# covered 20220620 Seems currently broken
 # Digital Filter Coefficients Generator (DFCGen) GTK+
 dfcgen-gtk
 # read temperature sensors in a 1-Wire net
@@ -200,9 +201,9 @@ electric
 # Identify, read, write, erase, and verify BIOS/ROM/flash chips
 flashrom
 # Place and route tool for iCE40 family FPGAs
-arachne-pnr
+# arachne-pnr 20220620 Seems currently broken
 # Chip db files for arachne-pnr
-arachne-pnr-chipdb
+# arachne-pnr-chipdb
 # Tools to handle the bitstream format of Lattice iCE40 FPGAs
 fpga-icestorm
 # Chip database files for fpga-icestorm
@@ -220,28 +221,6 @@ graywolf
 # Electronic schematic and PCB design software
 # Common files used by kicad
 kicad
-#Kicad help files (Catalan)
-kicad-doc-ca
-#Kicad help files (German)
-kicad-doc-de
-#Kicad help files (English)
-kicad-doc-en
-#Kicad help files (Spanish)
-kicad-doc-es
-#Kicad help files (French)
-kicad-doc-fr
-#Kicad help files (Indonesian)
-kicad-doc-id
-#Kicad help files (Italian)
-kicad-doc-it
-#Kicad help files (Japanese)
-kicad-doc-ja
-#Kicad help files (Polish)
-kicad-doc-pl
-#Kicad help files (Russian)
-kicad-doc-ru
-#Kicad help files (Chinese)
-kicad-doc-zh
 kicad-footprints
 kicad-libraries
 kicad-symbols
@@ -261,23 +240,23 @@ nbc
 # simulator for the Microchip PIC16C84 microcontroller
 nitpic
 # Open Lighting Architecture
-ola
+# ola 20220620 Seems currently broken
 # shell utilities to talk to an 1-Wire owserver
-ow-shell
+# ow-shell 20220620 Seems currently broken
 # tools to monitor or inspect a ow-server link
-ow-tools
+# ow-tools
 # Dallas 1-wire support
-owfs
+# owfs
 # common files used by any of the OWFS programs
-owfs-common
+# owfs-common
 # 1-Wire filesystem
-owfs-fuse
+# owfs-fuse
 # FTP daemon providing access to 1-Wire networks
-owftpd
+# owftpd
 # HTTP daemon providing access to 1-Wire networks
-owhttpd
+# owhttpd
 # Backend server for 1-Wire control
-owserver
+# owserver
 # printed circuit board (pcb) design program - meta-package
 pcb
 # printed circuit board (pcb) design program - common files
@@ -289,7 +268,7 @@ pcb-lesstif
 # printed circuit board (pcb) design program
 pcb-rnd
 # command-line tool for engraving PCBs using CNCs
-pcb2gcode
+# pcb2gcode 20220620 Seems currently broken
 # interfacing with the Arduino from within Pure Data (Pd)
 pd-pduino
 # interfacing with your XBee from within Pure Data (Pd)
@@ -303,13 +282,13 @@ qelectrotech-data
 # examples files for qelectrotech
 qelectrotech-examples
 # Open-Source Digital Synthesis Flow
-qflow
+# qflow 20220620 Seems currently broken
 # Technology files needed for qflow for osu018
-qflow-tech-osu018
+# qflow-tech-osu018
 # Technology files needed for qflow for osu035
-qflow-tech-osu035
+# qflow-tech-osu035
 # Technology files needed for qflow for osu050
-qflow-tech-osu050
+# qflow-tech-osu050
 # Multi-level, over-the-cell maze router
 qrouter
 # simulator for Microchip PIC16F84 microcontroller
@@ -345,9 +324,9 @@ w1retap-sqlite
 # Draw circuit schematics or almost anything
 xcircuit
 # Framework for Verilog RTL synthesis
-yosys
+# yosys 20220620 Seems currently broken
 # Framework for Verilog RTL synthesis (development files)
-yosys-dev
+# yosys-dev 20220620 Seems currently broken
 
 # Other tools in the "Embedded" section that might be useful
 # Firmware for USB JTAG programmers
