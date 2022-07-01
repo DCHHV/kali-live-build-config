@@ -147,5 +147,6 @@ lb config noauto \
 	--bootappend-live-failsafe "boot=live components noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
 	--bootappend-install "net.ifnames=0" \
 	--security false \
+	--win32-loader false \
 	$lb_opts \
 	"$@"
