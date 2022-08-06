@@ -41,101 +41,355 @@ openssh-server
 kali-desktop-xfce
 
 # Kali packages
+# These cover some of the base packages, nearly all of which are
+# re-specified below but thats okay.
 kali-tools-sdr
 kali-tools-rfid
 kali-tools-hardware
 
-# Hardware tools
-# Logic analyzer and protocol decoder software suite
-sigrok
-# GNU C compiler (cross compiler for avr)
-gcc-avr
-# GNU Debugger for avr
-# gdb-avr 20220620 Seems to be broken in kali-rolling?
-# software for programming Atmel AVR microcontrollers
-avrdude
-# tool for searching binary images for embedded files and executable code
-binwalk
-# free and advanced command line hexadecimal editor
-radare2
-# GUI for it (this might get fully replaced later with cutter/rizin?)
-radare2-cutter
-# Open on-chip JTAG debug solution for ARM and MIPS systems
+# Embedded section
+# Altera Bus Blaster emulation using Cypress FX2 chip
+ixo-usb-jtag
+# Embedded board control programs
+# labgrid
+# Open on-chip JTAG/SWD debug solution for embedded target devices
 openocd
-# AVR development board IDE and built-in libraries
-arduino 
+# Common include files for the open wince project
+# openwince-include Conflicts with urjtag
+# allows programming jtag capable devices such as CPUs or FPGAs
+# openwince-jtag Conflicts with urjtag
+# Tools for flashing Rockchip devices
+# rkflashtool
+# Software update framework for embedded systems
+swupdate
+# JTAG programmer for various flash parts and boards
+urjtag
+
+
+# Electronics section
+# Altus Metrum firmware and utilities
+# altos
+# AVR development board IDE from Arduino CC
+arduino
+# Command line tool for compiling Arduino sketches
+arduino-builder
+# Platform files for Arduino to run on ATmega1284P
+arduino-mighty-1284p
 # Program your Arduino from the command line
 arduino-mk
+# Arbitrary Transmission Line Calculator
+atlc
+# Examples for Arbitrary Transmission Line Calculator
+# atlc-examples
+# use GDB with Atmel AVR debuggers
+avarice
+# assembler for Atmel AVR microcontrollers
+avra
+# software for programming Atmel AVR microcontrollers
+avrdude
+# Programmer for Atmel AVR microcontrollers
+# avrp
+# GRBL CNC command sender, autoleveler and g-code editor
+# bcnc
+# ABC - A System for Sequential Synthesis and Verification
+# berkeley-abc
+# Atmel SAM ARM microcontroller flash programming GUI
+# bossa
 # Atmel SAM ARM microcontroller flash programming utility
 bossa-cli
+# Utility to control X10 Firecracker devices for home automation
+# bottlerocket
+# EDA related CAM file viewer (gerber/excellon/g-code)
+camv-rnd
+# Electronic Design Automation software focused on easy of use and portability
+caneda
+# Handle CAN (Controller Area Network) descriptions - cmdline utilities
+canmatrix-utils
+# Macros for drawing electric circuits
+# circuit-macros
 # Cypress EZ-USB FX2 (LP) programmer
 cycfx2prog
+# Digital Filter Coefficients Generator (DFCGen) GTK+
+# dfcgen-gtk
 # device firmware update (DFU) based USB programmer for Atmel chips
 dfu-programmer
 # Device firmware update (DFU) USB programmer
 dfu-util
-# tool for documenting hardware designs through timing diagrams
-# drawtiming 20220620 Seems currently broken
+# read temperature sensors in a 1-Wire net
+# digitemp
+# pic-language converter to LaTeX-compatible and other formats
+# dpic
+# electrical CAD system
+# electric
 # Emulator and simulator for 8051 microcontrollers
 emu8051
-# create and flash firmware files to ESP8266 or ESP32 chips
+# create and flash firmware files to ESP8266 and ESP32 chips
 esptool
+# Identify, read, write, erase, and verify BIOS/ROM/flash chips
+flashrom
 # utility to configure SRAM based ALTERA devices
-flexloader
-# VHDL simulator for Linux
-# ghdl 20220620 Seems currently broken
-# ghdl-common
-# ghdl-gcc
+# flexloader
+# Footprint editor
+# fped
+# Tools to handle the bitstream format of Lattice iCE40 FPGAs
+fpga-icestorm
+# Chip database files for fpga-icestorm
+fpga-icestorm-chipdb
+# Easy-to-use electronic design software
+# fritzing
+# Easy-to-use electronic design software (data files)
+# fritzing-data
+# Easy-to-use electronic design software (parts files)
+# fritzing-parts
+# Gerber file viewer (only RS 274 X format)
+gerbv
 # graphical logic circuit simulator
 glogic
-# GNU Circuit Analysis package
+# GNU Circuit Analysis package, main executable
 gnucap
+# GNU Circuit Analysis package, development headers
+gnucap-common
+# GNU Circuit Analysis package, default plugins
+gnucap-default-plugins0
+# GNU Circuit Analysis package, Python command plugin
+gnucap-python
 # Graphical Intel 8085 simulator, assembler and debugger
 gnusim8085
 # Simulator for Microchip's PIC microcontrollers
 gpsim
 # GNU PIC utilities
 gputils
+# Placement for digital VLSI design
+# graywolf
 # VCD (Value Change Dump) file waveform viewer
 gtkwave
 # waveform viewer eg for spice simulators
 gwave
-# switch-level simulator
-# irsim 20220620 Seems currently broken
+# EDA layout and schematic application
+# horizon-eda
+# code signing tool for i.MX platform
+# imx-code-signing-tool
+# imx_loader - i.MX/Vybrid recovery utility
+# imx-usb-loader
+# Icarus verilog compiler
+iverilog
+# Electronic schematic and PCB design software
+kicad
+# Demo projects for kicad
+# kicad-demos
+# Kicad help files (German)
+# kicad-doc-de
+# Kicad help files (English)
+# kicad-doc-en
+# Kicad help files (Spanish)
+# kicad-doc-es
+# Kicad help files (French)
+# kicad-doc-fr
+# Kicad help files (Japanese)
+# kicad-doc-ja
+# Footprint symbols for KiCad's Pcbnew
+kicad-footprints
+# 3D models for 3D viewer in KiCad's Pcbnew and Footprint Editor
+# kicad-packages3d
+# Schematic symbols for KiCad's Eeschema
+kicad-symbols
+# Project templates for KiCad
+# kicad-templates
+# High Performance Layout Viewer and Editor
+# klayout
+# Control programs for the Per Vices Noctar IQ demodulator board
+# langford-utils
+# Lepton Electronic Design Automation (metapackage)
+# lepton-eda
+# utility library for talking to the LEGO Mindstorms NXT brick
+libnxt
+# list serial ports
+listserialportsc
 # interface to NXP LPC Microcontrollers ISP serial interface
 lpctools
+# Flash programmer for Renesas M16C and R8C microcontrollers
+m16c-flash
+# VLSI layout tool
+# magic
+# Graphical Integrated Development Environment for 8051
+mcu8051ide
 # debugging tool for MSP430 microcontrollers
 mspdebug
+# C compiler for LEGO Mindstorms NXT bricks
+nbc
+# Netlist comparison - Layout vs Schematic (LVS)
+netgen-lvs
+# Place and route tool for Generic FPGAs
+# nextpnr-generic 20220704 Package broken
+# FPGA place and route tool for Lattice iCE40
+nextpnr-ice40
+# FPGA place and route tool for Lattice iCE40 - with GUI
+# nextpnr-ice40-qt
 # Spice circuit simulator
 ngspice
+# simulator for the Microchip PIC16C84 microcontroller
+nitpic
+# Improved firmware for LEGO Mindstorms NXT bricks
+nxt-firmware
+# Octave interface for openems
+# octave-openems
+# Electromagnetic simulator
+openems
+# Gate-level Static Timing Analyzer
+opensta
+# printed circuit board (pcb) design program - metapackage
+# pcb
+# printed circuit board (pcb) design program - GTK+ interface
+# pcb-gtk
+# printed circuit board (pcb) design program - LessTif interface
+# pcb-lesstif
+# Standard installation of pcb-rnd
+# pcb-rnd
+# Autoroute and autoplace.
+# pcb-rnd-auto
+# Networking plugins.
+# pcb-rnd-cloud
+# Debug and diagnostics.
+# pcb-rnd-debug
+# Documentation for pcb-rnd
+# pcb-rnd-doc
+# Common export plugins.
+# pcb-rnd-export
+# Export formats: special/extra
+# pcb-rnd-export-extra
+# Export plugins to simulators
+# pcb-rnd-export-sim
+# Extra action commands and optional functionality.
+# pcb-rnd-extra
+# Geometry import.
+# pcb-rnd-import-geo
+# Netlist/schematics import plugins.
+# pcb-rnd-import-net
+# File format compatibility with other PCB layout designers.
+# pcb-rnd-io-alien
+# Commonly used non-native board and footprint file formats
+# pcb-rnd-io-standard
+# Support library for building the GUI.
+# pcb-rnd-lib-gui
+# Support library for alien file formats.
+# pcb-rnd-lib-io
+# interfacing with the Arduino from within Pure Data (Pd)
+# pd-pduino
+# interfacing with your XBee from within Pure Data (Pd)
+# pd-xbee
+# sigrok logic analyzer, oscilloscope, and MSO GUI
+pulseview
+# front-end for "Circuit Macros" and the PIC language
+pycirkuit
+# Electric schematic editor
+# qelectrotech
+# symbols needed for qelectrotech
+# qelectrotech-data
+# examples files for qelectrotech
+# qelectrotech-examples
+# Multi-level, over-the-cell maze router
+# qrouter
 # tool to decode RFID tag data
 rfdump
+# external autorouter for pcb-rnd
+# route-rnd
 # In-System Programmer for 8051 MCUs using usbtiny
 s51dude
 # OBD-II vehicle diagnostic scanner
 scantool
 # Small Device C Compiler
 sdcc
+# Small Device C Compiler (libraries)
+sdcc-libraries
 # Micro-controller simulator for SDCC
 sdcc-ucsim
-# Atmel AVR simulator
+# Logic analyzer and protocol decoder software suite (metapackage)
+sigrok
+# command-line frontend for the sigrok software
+sigrok-cli
+# Firmware for Cypress FX2(LP) based logic analyzers
+sigrok-firmware-fx2lafw
+# lean and mean AVR simulator
 simavr
-# Simple real time electronic circuit simulator
+# simple real time electronic circuit simulator
 simulide
+# simulator for Microchip PIC16F84 microcontroller
+simulpic
+# Utilities for using the Wi-Spy USB spectrum analyzer hardware
+spectools
 # MIPS R2000/R3000 emulator
-spim
+# spim
+# OpenSource ST-Link tools replacement.
+# stlink-gui
+# OpenSource ST-Link tools replacement.
+stlink-tools
 # STM32 chip flashing utility using a serial bootloader
 stm32flash
+# Simple command-line tool for LEGO Mindstorms NXT
+t2n
+# Tcl/Tk based digital circuit editor and simulator
+# tkgate
+# Tcl/Tk based digital circuit editor and simulator - data files
+# tkgate-data
+# USB hub per-port power control
+# uhubctl
+# Micro In-System Programmer for Atmel's AVR MCUs
+uisp
+# USB HID relay driver
+usbrelay
+# fast free Verilog simulator
+verilator
+# Veroboard, Perfboard, and PCB layout and routing application
+# veroroute
+# Veroboard, Perfboard, and PCB layout and routing application (data package)
+# veroroute-data
+# tool for engraving PCBs using CNCs
+# visolate
+# Data logger for 1-Wire weather sensors
+# w1retap
+# Data logger for 1-Wire weather sensors (MongoDB plugin)
+# w1retap-mongo
+# Data logger for 1-Wire weather sensors (MySQL plugin)
+# w1retap-mysql
+# Data logger for 1-Wire weather sensors (ODBC plugin)
+# w1retap-odbc
+# Data logger for 1-Wire weather sensors (PostgreSQL plugin)
+# w1retap-pgsql
+# Data logger for 1-Wire weather sensors (SQLite plugin)
+# w1retap-sqlite
+# logic circuits simulator
+# wiredpanda
+# JTAG flashing tool for FPGAs, CPLDs and EEPROMs
+xc3sprog
+# Draw circuit schematics or almost anything
+xcircuit
+# schematic capture program
+xschem
 
+
+# Misc tools
+# These are from various other sections
+# GNU C compiler (cross compiler for avr)
+gcc-avr
+# GNU Debugger for avr
+# gdb-avr 20220620 Seems to be broken in kali-rolling?
+# tool for searching binary images for embedded files and executable code
+binwalk
+# free and advanced command line hexadecimal editor
+radare2
+# GUI for it (this might get fully replaced later with cutter/rizin?)
+radare2-cutter
+# tool for documenting hardware designs through timing diagrams
+# drawtiming 20220620 Seems currently broken
+# VHDL simulator for Linux
+# ghdl 20220620 Seems currently broken
+# ghdl-common
+# ghdl-gcc
+# switch-level simulator
+# irsim 20220620 Seems currently broken
 # fast processor emulator
 qemu-system
 qemu-user
-# JTAG programmer for various flash parts and boards
-urjtag
-# Icarus verilog compiler
-iverilog
-
-# Misc tools
 # fast, scalable, distributed revision control system
 git
 # Document (PostScript, PDF) viewer
@@ -145,7 +399,7 @@ tmux
 # minimal dumb-terminal emulation program
 picocom
 # GTK+ base UVC Viewer
-guvcview
+# guvcview
 
 # Other potential useful tools:
 # c2tool - C2 programming/debugging interface
@@ -157,88 +411,23 @@ guvcview
 # SDR tools:
 # gnuradio chirp hackrf kalibrate-rtl rtlsdr-scanner gqrx-sdr multimon-ng uhd-host uhd-images libgnuradio-baz gr-osmosdr gr-iqbal
 
-# Other tools in the "Electronics" section that might be useful
+
+# XXX: Review these in the future
 # VLSI CAD Tools
 # alliance
-# Altus Metrum firmware and utilities
-altos
 # Place and route tool for iCE40 family FPGAs
 # arachne-pnr 20220620 Seems currently broken
 # Chip db files for arachne-pnr
 # arachne-pnr-chipdb
-# Platform files for Arduino to run on ATmega1284P
-arduino-mighty-1284p
-# Arbitrary Transmission Line Calculator
-atlc
-# Examples for Arbitrary Transmission Line Calculator
-atlc-examples
-# use GDB with Atmel AVR debuggers
-avarice
-# assembler for Atmel AVR microcontrollers
-avra
-# Programmer for Atmel AVR microcontrollers
-avrp
-# ABC - A System for Sequential Synthesis and Verification
-berkeley-abc
-# Atmel SAM ARM microcontroller flash programming GUI
-bossa
-# Utility to control X10 Firecracker devices for home automation
-bottlerocket
-# Electronic Design Automation software focused on easy of use and portability
-caneda
-# Handle CAN (Controller Area Network) descriptions - cmdline utilities
-canmatrix-utils
 # C Compiler for TI/Chipcon 8051-based RF SOCs
 # cc1111  Conflicts with sdcc
 # Verilog code coverage analysis tool
 # covered 20220620 Seems currently broken
-# Digital Filter Coefficients Generator (DFCGen) GTK+
-dfcgen-gtk
-# read temperature sensors in a 1-Wire net
-digitemp
-# electrical CAD system
-electric
-# Identify, read, write, erase, and verify BIOS/ROM/flash chips
-flashrom
 # Place and route tool for iCE40 family FPGAs
 # arachne-pnr 20220620 Seems currently broken
 # Chip db files for arachne-pnr
 # arachne-pnr-chipdb
-# Tools to handle the bitstream format of Lattice iCE40 FPGAs
-fpga-icestorm
-# Chip database files for fpga-icestorm
-fpga-icestorm-chipdb
-# Easy-to-use electronic design software
-fritzing
-# Easy-to-use electronic design software (data files)
-fritzing-data
-# Easy-to-use electronic design software (parts files)
-fritzing-parts
-# Gerber file viewer for PCB design
-gerbv
-# Placement for digital VLSI design
-graywolf
 # Electronic schematic and PCB design software
-# Common files used by kicad
-kicad
-kicad-footprints
-kicad-libraries
-kicad-symbols
-kicad-templates
-# Control programs for the Per Vices Noctar IQ demodulator board
-langford-utils
-# utility library for talking to the LEGO Mindstorms NXT brick
-libnxt
-# Flash programmer for Renesas M16C and R8C microcontrollers
-m16c-flash
-# VLSI layout tool
-magic
-# Graphical Integrated Development Environment for 8051
-mcu8051ide
-# C compiler for LEGO Mindstorms NXT bricks
-nbc
-# simulator for the Microchip PIC16C84 microcontroller
-nitpic
 # Open Lighting Architecture
 # ola 20220620 Seems currently broken
 # shell utilities to talk to an 1-Wire owserver
@@ -257,30 +446,8 @@ nitpic
 # owhttpd
 # Backend server for 1-Wire control
 # owserver
-# printed circuit board (pcb) design program - meta-package
-pcb
-# printed circuit board (pcb) design program - common files
-pcb-common
-# printed circuit board (pcb) design program - GTK+ interface
-pcb-gtk
-# printed circuit board (pcb) design program - LessTif interface
-pcb-lesstif
-# printed circuit board (pcb) design program
-pcb-rnd
 # command-line tool for engraving PCBs using CNCs
 # pcb2gcode 20220620 Seems currently broken
-# interfacing with the Arduino from within Pure Data (Pd)
-pd-pduino
-# interfacing with your XBee from within Pure Data (Pd)
-pd-xbee
-# Transitional dummy package for python-pyvisa
-python3-pyvisa
-# Electric schematic editor
-qelectrotech
-# symbols needed for qelectrotech
-qelectrotech-data
-# examples files for qelectrotech
-qelectrotech-examples
 # Open-Source Digital Synthesis Flow
 # qflow 20220620 Seems currently broken
 # Technology files needed for qflow for osu018
@@ -289,54 +456,11 @@ qelectrotech-examples
 # qflow-tech-osu035
 # Technology files needed for qflow for osu050
 # qflow-tech-osu050
-# Multi-level, over-the-cell maze router
-qrouter
-# simulator for Microchip PIC16F84 microcontroller
-simulpic
-# Utilities for using the Wi-Spy USB spectrum analyzer hardware
-spectools
-# Simple command-line tool for LEGO Mindstorms NXT
-t2n
-# Tcl/Tk based digital circuit editor and simulator
-tkgate
-# Tcl/Tk based digital circuit editor and simulator - data files
-tkgate-data
-# Micro In-System Programmer for Atmel's AVR MCUs
-uisp
-# USB HID relay driver
-usbrelay
-# fast free Verilog simulator
-verilator
-# tool for engraving PCBs using CNCs
-visolate
-# Data logger for 1-Wire weather sensors
-w1retap
-# Data logger for 1-Wire weather sensors (MongoDB plugin)
-w1retap-mongo
-# Data logger for 1-Wire weather sensors (MySQL plugin)
-w1retap-mysql
-# Data logger for 1-Wire weather sensors (ODBC plugin)
-w1retap-odbc
-# Data logger for 1-Wire weather sensors (PostgreSQL plugin)
-w1retap-pgsql
-# Data logger for 1-Wire weather sensors (SQLite plugin)
-w1retap-sqlite
-# Draw circuit schematics or almost anything
-xcircuit
 # Framework for Verilog RTL synthesis
 # yosys 20220620 Seems currently broken
 # Framework for Verilog RTL synthesis (development files)
 # yosys-dev 20220620 Seems currently broken
 
-# Other tools in the "Embedded" section that might be useful
-# Firmware for USB JTAG programmers
-ixo-usb-jtag
-# Common include files for the open wince project
-# openwince-include Conflicts with urjtag
-# allows programming jtag capable devices such as CPUs or FPGAs
-# openwince-jtag Conflicts with urjtag
-# Tools for flashing Rockchip devices
-rkflashtool
 
 # Other cross compilers
 gcc-aarch64-linux-gnu
@@ -359,3 +483,4 @@ audacity
 
 # gdb support for multiple architectures
 gdb-multiarch
+
