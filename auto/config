@@ -123,6 +123,10 @@ if [ -n "$enable_pu" ]; then
 		> config/archives/kali-proposed-updates.list.binary
 fi
 
+# XXX: --firmware-chroot has been set to false to work around
+# https://bugs.debian.org/1018873 and we deemed that acceptable because
+# kali-linux-headless already pulls kali-linux-firmware so most firmwares
+# will continue to be installed
 lb config noauto \
 	--apt-indices=false \
 	--distribution "$dist" \
@@ -134,7 +138,7 @@ lb config noauto \
 	--backports false \
 	--source false \
 	--firmware-binary true \
-	--firmware-chroot true \
+	--firmware-chroot false \
 	--mirror-bootstrap "$kali_mirror" \
 	--mirror-debian-installer "$kali_mirror" \
 	--mirror-binary "$public_kali_mirror" \
