@@ -19,3 +19,6 @@ pipewire-pulse
 # Ensure speech-dispatcher recommends are available
 sound-icons
 speech-dispatcher-espeak-ng
+# Ensure python3-unicodedata2 is available. Can drop when
+# python3-all (>= 3.11.0) enters Kali rolling.
+python3-unicodedata2
