@@ -1,0 +1,3 @@
+# Exclude big packages that are Recommended by defensive tools metapackages.
+# Keep this list in sync with kali-meta/debian/control.
+exploitdb-papers
