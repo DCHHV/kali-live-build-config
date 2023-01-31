@@ -325,6 +325,10 @@ case "$IMAGE_TYPE" in
 			export DISKTYPE="NETINST"
 			profiles="kali"
 			auto_profiles="kali"
+		elif [ "$KALI_VARIANT" = "purple" ]; then
+			export DISKTYPE="BD"
+			profiles="kali kali-purple"
+			auto_profiles="kali kali-purple"
 		else    # plain installer
 			export DISKTYPE="BD"
 			profiles="kali offline"
