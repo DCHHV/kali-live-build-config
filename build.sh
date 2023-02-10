@@ -323,10 +323,16 @@ case "$IMAGE_TYPE" in
 
 		if [ "$KALI_VARIANT" = "netinst" ]; then
 			export DISKTYPE="NETINST"
-		else
+			profiles="kali"
+			auto_profiles="kali"
+		else    # plain installer
 			export DISKTYPE="BD"
+			profiles="kali offline"
+			auto_profiles="kali offline"
 		fi
 		debug "DISKTYPE: $DISKTYPE"
+		debug "profiles: $profiles"
+		debug "auto_profiles: $auto_profiles"
 
 		if [ -e .mirror ]; then
 			kali_mirror=$(cat .mirror)
@@ -379,7 +385,9 @@ case "$IMAGE_TYPE" in
 			--force-root \
 			--conf simple-cdd.conf \
 			--dist $CODENAME \
-			--debian-mirror $kali_mirror
+			--debian-mirror $kali_mirror \
+			--profiles "$profiles" \
+			--auto-profiles "$auto_profiles"
 		res=$?
 		cd ../
 		if [ $res -ne 0 ] || [ ! -e $IMAGE_NAME ]; then
