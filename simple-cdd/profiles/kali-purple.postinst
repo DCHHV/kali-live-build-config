@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -eu
+
+configure_elastic() {
+    # Install the elastic archive keyring
+    wget -q -O- https://artifacts.elastic.co/GPG-KEY-elasticsearch \
+    > /etc/apt/keyrings/elastic-keyring.asc
+
+    # Enable the repository
+    cat >/etc/apt/sources.list.d/elastic.list <<EOF
+deb [signed-by=/etc/apt/keyrings/elastic-keyring.asc] https://artifacts.elastic.co/packages/8.x/apt stable main
+EOF
+
+    apt-get update
+}
+
+configure_elastic
