@@ -329,6 +329,7 @@ case "$IMAGE_TYPE" in
 			export DISKTYPE="BD"
 			profiles="kali kali-purple"
 			auto_profiles="kali kali-purple"
+			export KERNEL_PARAMS="debian-installer/theme=Clearlooks-Purple"
 		else    # plain installer
 			export DISKTYPE="BD"
 			profiles="kali offline"
@@ -337,6 +338,7 @@ case "$IMAGE_TYPE" in
 		debug "DISKTYPE: $DISKTYPE"
 		debug "profiles: $profiles"
 		debug "auto_profiles: $auto_profiles"
+		[ -v KERNEL_PARAMS ] && debug "KERNEL_PARAMS: $KERNEL_PARAMS"
 
 		if [ -e .mirror ]; then
 			kali_mirror=$(cat .mirror)

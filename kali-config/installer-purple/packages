@@ -5,6 +5,7 @@
 # in the installer ISO.
 # For the complete list see: https://tools.kali.org/kali-metapackages
 kali-system-core
+kali-themes-purple  # temporary, until we do it a better way
 
 # Tools
 kali-tools-detect
