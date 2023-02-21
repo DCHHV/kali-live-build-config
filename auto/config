@@ -117,9 +117,9 @@ cp -rT kali-config/common config
 
 if [ -n "$enable_pu" ]; then
 	mkdir -p config/archives
-	echo "deb $kali_mirror $dist-proposed-updates main contrib non-free" \
+	echo "deb $kali_mirror $dist-proposed-updates main contrib non-free non-free-firmware" \
 		> config/archives/kali-proposed-updates.list.chroot
-	echo "deb $public_kali_mirror $dist-proposed-updates main contrib non-free" \
+	echo "deb $public_kali_mirror $dist-proposed-updates main contrib non-free non-free-firmware" \
 		> config/archives/kali-proposed-updates.list.binary
 fi
 
@@ -127,7 +127,7 @@ lb config noauto \
 	--apt-indices=false \
 	--distribution "$dist" \
 	--debian-installer-distribution "$dist" \
-	--archive-areas "main contrib non-free" \
+	--archive-areas "main contrib non-free non-free-firmware" \
 	--debootstrap-options "--keyring=/usr/share/keyrings/kali-archive-keyring.gpg" \
 	--keyring-packages kali-archive-keyring \
 	--updates false \
