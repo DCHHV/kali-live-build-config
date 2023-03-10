@@ -1,4 +1,0 @@
-# Do use a network mirror, but do not upgrade, so that
-# only missing packages are fetched.
-d-i apt-setup/use_mirror boolean true
-d-i pkgsel/upgrade select none

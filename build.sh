@@ -327,8 +327,8 @@ case "$IMAGE_TYPE" in
 			auto_profiles="kali"
 		elif [ "$KALI_VARIANT" = "purple" ]; then
 			export DISKTYPE="BD"
-			profiles="kali kali-purple"
-			auto_profiles="kali kali-purple"
+			profiles="kali kali-purple offline"
+			auto_profiles="kali kali-purple offline"
 			export KERNEL_PARAMS="debian-installer/theme=Clearlooks-Purple"
 		else    # plain installer
 			export DISKTYPE="BD"
