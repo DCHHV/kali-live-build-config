@@ -1,4 +1,9 @@
 ##
+## Add kali-linux-firmware, which depends on the most common firmware
+##
+kali-linux-firmware
+
+##
 ## Add extra firmware (kali-linux-headless depends on firmware we wants, but
 ## some can't be put there because they require network access... but we
 ## install those in the live image anyway since we have network access
