@@ -253,8 +253,8 @@ case "$IMAGE_TYPE" in
 		debug "ver_debian_cd: $ver_debian_cd"
 
 		ver_simple_cdd=$(dpkg-query -f '${Version}' -W simple-cdd)
-		if dpkg --compare-versions "$ver_simple_cdd" lt 0.6.8~kali2; then
-			echo "ERROR: You need simple-cdd (>= 0.6.8~kali2), you have $ver_simple_cdd" >&2
+		if dpkg --compare-versions "$ver_simple_cdd" lt 0.6.9; then
+			echo "ERROR: You need simple-cdd (>= 0.6.9), you have $ver_simple_cdd" >&2
 			exit 1
 		fi
 		debug "ver_simple_cdd: $ver_simple_cdd"
