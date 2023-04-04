@@ -7,5 +7,3 @@
 # We still put kali-linux-firmware because we want firmware to be
 # in the ISO for use by the installer
 kali-linux-firmware
-# Add packages required by debootstrap (cf. #51)
-usr-is-merged

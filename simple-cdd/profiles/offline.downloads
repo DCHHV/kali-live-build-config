@@ -1,5 +1,3 @@
-# Add packages required by debootstrap (cf. #51)
-usr-is-merged
 # Add packages required for virtualization support (installed by
 # /usr/lib/finish-install.d/08hw-detect) including their recommends
 hyperv-daemons
