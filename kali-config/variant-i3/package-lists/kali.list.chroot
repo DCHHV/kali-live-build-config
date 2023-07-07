@@ -14,7 +14,6 @@ kali-linux-default
 
 # Graphical desktop
 kali-desktop-i3
-kali-themes
 
 # Kali applications
 #<package>
