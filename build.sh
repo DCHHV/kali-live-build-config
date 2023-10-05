@@ -246,8 +246,8 @@ case "$IMAGE_TYPE" in
 		fi
 
 		ver_debian_cd=$(dpkg-query -f '${Version}' -W debian-cd)
-		if dpkg --compare-versions "$ver_debian_cd" lt 3.1.36; then
-			echo "ERROR: You need debian-cd (>= 3.1.36), you have $ver_debian_cd" >&2
+		if dpkg --compare-versions "$ver_debian_cd" lt 3.2.1+kali1; then
+			echo "ERROR: You need debian-cd (>= 3.2.1+kali1), you have $ver_debian_cd" >&2
 			exit 1
 		fi
 		debug "ver_debian_cd: $ver_debian_cd"
