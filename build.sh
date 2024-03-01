@@ -343,7 +343,7 @@ case "$IMAGE_TYPE" in
 		if [ -e .mirror ]; then
 			kali_mirror=$(cat .mirror)
 		else
-			kali_mirror=http://archive.kali.org/kali/
+			kali_mirror=http://kali.download/kali/
 		fi
 		if ! echo "$kali_mirror" | grep -q '/$'; then
 			kali_mirror="$kali_mirror/"
