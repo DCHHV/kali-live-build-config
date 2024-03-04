@@ -94,7 +94,11 @@ failure() {
 
 run_and_log() {
 	if [ -n "$VERBOSE" ] || [ -n "$DEBUG" ]; then
-		echo "RUNNING: $@" >&2
+		printf "RUNNING:" >&2
+		for _ in "$@"; do
+			[[ $_ =~ [[:space:]] ]] && printf " '%s'" "$_" || printf " %s" "$_"
+		done >&2
+		printf "\n" >&2
 		"$@" 2>&1 | tee -a "$BUILD_LOG"
 	else
 		"$@" >>"$BUILD_LOG" 2>&1
