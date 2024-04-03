@@ -25,7 +25,7 @@ live-image-*.contents
 live-image-*.files
 live-image-*.hybrid.iso.zsync
 live-image-*.packages
-wget-log.*
+wget-log*
 
 # Overwritten due to build.sh
 simple-cdd/debian-cd/*
