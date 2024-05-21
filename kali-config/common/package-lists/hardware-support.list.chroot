@@ -19,3 +19,7 @@ firmware-b43-installer
 ##
 xserver-xorg-input-all
 xserver-xorg-video-all
+
+## Ensure users of the TTY console can change the keyboard layout. Check
+## https://bugs.debian.org/1070679 for details
+console-data
