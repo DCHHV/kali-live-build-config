@@ -9,8 +9,10 @@ images
 local/*
 simple-cdd/images/*
 simple-cdd/tmp/*
+
 # Files
 .mirror
+binary.modified_timestamps
 build.log
 chroot.files
 chroot.packages.install
@@ -23,9 +25,12 @@ live-image-*.contents
 live-image-*.files
 live-image-*.hybrid.iso.zsync
 live-image-*.packages
+wget-log*
+
 # Overwritten due to build.sh
 simple-cdd/debian-cd/*
 simple-cdd/profiles/kali.downloads
+
 # Miscellaneous
 .lock
 .stage

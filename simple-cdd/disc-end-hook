@@ -8,6 +8,13 @@ DISKNUM=$3
 CDDIR=$4
 ARCHES=$5
 
+# Copy grub theme assets
+# Until debian-cd picks them from d-i automatically:
+# http://bugs.debian.org/1003927
+cp -r $BASEDIR/../../kali-config/common/bootloaders/grub-pc/theme \
+      $BASEDIR/../../kali-config/common/bootloaders/grub-pc/splash.png \
+      $CDDIR/boot/grub/
+
 cd $CDDIR
 
 fix_branding() {
@@ -27,9 +34,9 @@ fi
 if [ -d boot/grub/theme ] && [ -s boot/grub/theme ]; then
     fix_branding boot/grub/theme/*
 fi
-if [ -e autorun.inf ]; then
-    fix_branding autorun.inf
-fi
+
+# Remove Debian's windows loader
+rm -f autorun.inf win32-loader.ini setup.exe
 
 # Replace Debian specific documentation
 rm -rf css

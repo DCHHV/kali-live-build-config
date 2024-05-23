@@ -63,7 +63,7 @@ done
 eval set -- "$temp"
 
 # Resolve release name
-dist=$(curl -s $kali_mirror/dists/$dist/Release | awk '/^Codename:/ {print $2}')
+dist=$(wget -q -O- $kali_mirror/dists/$dist/Release | awk '/^Codename:/ {print $2}')
 if [ -z "$dist" ]; then
 	echo "ERROR: Build release could not be resolved"
 	exit 1
@@ -125,16 +125,17 @@ cp -rT kali-config/common config
 
 if [ -n "$enable_pu" ]; then
 	mkdir -p config/archives
-	echo "deb $kali_mirror $dist-proposed-updates main contrib non-free" \
+	echo "deb $kali_mirror $dist-proposed-updates main contrib non-free non-free-firmware" \
 		> config/archives/kali-proposed-updates.list.chroot
-	echo "deb $public_kali_mirror $dist-proposed-updates main contrib non-free" \
+	echo "deb $public_kali_mirror $dist-proposed-updates main contrib non-free non-free-firmware" \
 		> config/archives/kali-proposed-updates.list.binary
 fi
 
 lb config noauto \
+	--apt-indices=false \
 	--distribution "$dist" \
 	--debian-installer-distribution "$dist" \
-	--archive-areas "main contrib non-free" \
+	--archive-areas "main contrib non-free non-free-firmware" \
 	--debootstrap-options "--keyring=/usr/share/keyrings/kali-archive-keyring.gpg" \
 	--keyring-packages kali-archive-keyring \
 	--updates false \
@@ -149,10 +150,11 @@ lb config noauto \
 	--iso-publisher "Kali" \
 	--iso-volume "HHV Kali Live" \
 	--linux-packages linux-image \
-	--memtest memtest86 \
+	--memtest memtest86+ \
 	--bootappend-live "boot=live components quiet splash noeject" \
 	--bootappend-live-failsafe "boot=live components noeject memtest noapic noapm nodma nomce nolapic nomodeset nosmp nosplash vga=normal" \
 	--bootappend-install "net.ifnames=0" \
 	--security false \
+	--win32-loader false \
 	$lb_opts \
 	"$@"
