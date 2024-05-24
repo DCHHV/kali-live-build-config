@@ -48,6 +48,10 @@ kali-tools-hardware
 # Hardware tools
 # Logic analyzer and protocol decoder software suite
 sigrok
+#Firmware for Cypress FX2(LP) based logic analyzers
+sigrok-firmware-fx2lafw
+# sigrok logic analyzer, oscilloscope, and MSO GUI
+pulseview
 # GNU C compiler (cross compiler for avr)
 gcc-avr
 # GNU Debugger for avr
@@ -81,13 +85,13 @@ emu8051
 # create and flash firmware files to ESP8266 or ESP32 chips
 esptool
 # utility to configure SRAM based ALTERA devices
-flexloader
+#flexloader
 # VHDL simulator for Linux
-ghdl
-ghdl-common
-ghdl-gcc
+#ghdl
+#ghdl-common
+#ghdl-gcc
 # graphical logic circuit simulator
-glogic
+#glogic
 # GNU Circuit Analysis package
 gnucap
 # Graphical Intel 8085 simulator, assembler and debugger
@@ -99,9 +103,9 @@ gputils
 # VCD (Value Change Dump) file waveform viewer
 gtkwave
 # waveform viewer eg for spice simulators
-gwave
+#gwave
 # switch-level simulator
-irsim
+#irsim
 # interface to NXP LPC Microcontrollers ISP serial interface
 lpctools
 # debugging tool for MSP430 microcontrollers
@@ -128,7 +132,7 @@ spim
 stm32flash
 
 # fast processor emulator
-qemu
+#qemu
 # JTAG programmer for various flash parts and boards
 urjtag
 # Icarus verilog compiler
@@ -178,7 +182,7 @@ avra
 # Programmer for Atmel AVR microcontrollers
 avrp
 # ABC - A System for Sequential Synthesis and Verification
-berkeley-abc
+#berkeley-abc
 # Atmel SAM ARM microcontroller flash programming GUI
 bossa
 # Utility to control X10 Firecracker devices for home automation
@@ -190,7 +194,7 @@ canmatrix-utils
 # C Compiler for TI/Chipcon 8051-based RF SOCs
 # cc1111  Conflicts with sdcc
 # Verilog code coverage analysis tool
-covered
+#covered
 # Digital Filter Coefficients Generator (DFCGen) GTK+
 dfcgen-gtk
 # read temperature sensors in a 1-Wire net
@@ -216,7 +220,7 @@ fritzing-parts
 # Gerber file viewer for PCB design
 gerbv
 # Placement for digital VLSI design
-graywolf
+#graywolf
 # Electronic schematic and PCB design software
 # Common files used by kicad
 kicad
@@ -242,6 +246,7 @@ kicad-doc-pl
 kicad-doc-ru
 #Kicad help files (Chinese)
 kicad-doc-zh
+kicad-demos
 kicad-footprints
 kicad-libraries
 kicad-symbols
@@ -279,23 +284,25 @@ owhttpd
 # Backend server for 1-Wire control
 owserver
 # printed circuit board (pcb) design program - meta-package
-pcb
+#pcb
 # printed circuit board (pcb) design program - common files
-pcb-common
+#pcb-common
 # printed circuit board (pcb) design program - GTK+ interface
-pcb-gtk
+#pcb-gtk
 # printed circuit board (pcb) design program - LessTif interface
-pcb-lesstif
+#pcb-lesstif
 # printed circuit board (pcb) design program
-pcb-rnd
+#pcb-rnd
 # command-line tool for engraving PCBs using CNCs
-pcb2gcode
+#pcb2gcode
 # interfacing with the Arduino from within Pure Data (Pd)
 pd-pduino
 # interfacing with your XBee from within Pure Data (Pd)
 pd-xbee
 # Transitional dummy package for python-pyvisa
 python3-pyvisa
+# Flipper Zero firmware updater
+qflipper
 # Electric schematic editor
 qelectrotech
 # symbols needed for qelectrotech
@@ -303,19 +310,25 @@ qelectrotech-data
 # examples files for qelectrotech
 qelectrotech-examples
 # Open-Source Digital Synthesis Flow
-qflow
+#qflow
 # Technology files needed for qflow for osu018
-qflow-tech-osu018
+#qflow-tech-osu018
 # Technology files needed for qflow for osu035
-qflow-tech-osu035
+#qflow-tech-osu035
 # Technology files needed for qflow for osu050
-qflow-tech-osu050
+#qflow-tech-osu050
 # Multi-level, over-the-cell maze router
-qrouter
+#qrouter
 # simulator for Microchip PIC16F84 microcontroller
 simulpic
 # Utilities for using the Wi-Spy USB spectrum analyzer hardware
 spectools
+# OpenSource ST-Link tools replacement.
+stlink-gui
+# OpenSource ST-Link tools replacement.
+stlink-tools
+# STM32 chip flashing utility using a serial bootloader
+stm32flash
 # Simple command-line tool for LEGO Mindstorms NXT
 t2n
 # Tcl/Tk based digital circuit editor and simulator
@@ -342,16 +355,18 @@ w1retap-odbc
 w1retap-pgsql
 # Data logger for 1-Wire weather sensors (SQLite plugin)
 w1retap-sqlite
+# logic circuits simulator
+wiredpanda
 # Draw circuit schematics or almost anything
-xcircuit
+#xcircuit
 # Framework for Verilog RTL synthesis
-yosys
+#yosys
 # Framework for Verilog RTL synthesis (development files)
-yosys-dev
+#yosys-dev
 
 # Other tools in the "Embedded" section that might be useful
 # Firmware for USB JTAG programmers
-ixo-usb-jtag
+#ixo-usb-jtag
 # Common include files for the open wince project
 # openwince-include Conflicts with urjtag
 # allows programming jtag capable devices such as CPUs or FPGAs
@@ -365,10 +380,10 @@ gcc-alpha-linux-gnu
 gcc-arm-linux-gnueabi
 gcc-arm-linux-gnueabihf
 gcc-arm-none-eabi
-gcc-h8300-hms
+#gcc-h8300-hms
 gcc-hppa-linux-gnu
 gcc-hppa64-linux-gnu
-binutils-m68hc1x
+#binutils-m68hc1x
 gcc-m68k-linux-gnu
 gcc-mips-linux-gnu
 gcc-mips64-linux-gnuabi64
