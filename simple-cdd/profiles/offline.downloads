@@ -1,3 +1,5 @@
+# Ensure eatmydata is available for eatmydata.udeb
+eatmydata
 # Add packages required for virtualization support (installed by
 # /usr/lib/finish-install.d/08hw-detect) including their recommends
 hyperv-daemons
