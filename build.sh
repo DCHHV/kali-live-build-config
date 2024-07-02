@@ -231,8 +231,8 @@ case "$IMAGE_TYPE" in
 		fi
 
 		ver_live_build=$(dpkg-query -f '${Version}' -W live-build)
-		if dpkg --compare-versions "$ver_live_build" lt "1:20230502+kali3"; then
-			echo "ERROR: You need live-build (>= 1:20230502+kali3), you have $ver_live_build" >&2
+		if dpkg --compare-versions "$ver_live_build" lt "1:20230502+kali4"; then
+			echo "ERROR: You need live-build (>= 1:20230502+kali4), you have $ver_live_build" >&2
 			exit 1
 		fi
 		debug "ver_live_build: $ver_live_build"
