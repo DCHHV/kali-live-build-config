@@ -340,7 +340,7 @@ uisp
 # USB HID relay driver
 usbrelay
 # fast free Verilog simulator
-verilator
+#verilator
 # tool for engraving PCBs using CNCs
 visolate
 # Data logger for 1-Wire weather sensors
