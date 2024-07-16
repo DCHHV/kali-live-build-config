@@ -142,6 +142,23 @@ print_help() {
 	exit 0
 }
 
+require_package() {
+	local pkg=$1
+	local required_version=$2
+	local pkg_version=
+
+	pkg_version=$(dpkg-query -f '${Version}' -W $pkg || true)
+	if [ -z "$pkg_version" ]; then
+		echo "ERROR: You need $pkg, but it is not installed" >&2
+		exit 1
+	fi
+	if dpkg --compare-versions "$pkg_version" lt "$required_version"; then
+		echo "ERROR: You need $pkg (>= $required_version), you have $pkg_version" >&2
+		exit 1
+	fi
+	debug "$pkg version: $pkg_version"
+}
+
 # Allowed command line options
 . $(dirname $0)/.getopt.sh
 
@@ -233,39 +250,15 @@ case "$IMAGE_TYPE" in
 		if [ ! -d "$(dirname $0)/kali-config/variant-$KALI_VARIANT" ]; then
 			echo "ERROR: Unknown variant of Kali live configuration: $KALI_VARIANT" >&2
 		fi
-
-		ver_live_build=$(dpkg-query -f '${Version}' -W live-build)
-		if dpkg --compare-versions "$ver_live_build" lt "1:20230502+kali3"; then
-			echo "ERROR: You need live-build (>= 1:20230502+kali3), you have $ver_live_build" >&2
-			exit 1
-		fi
-		debug "ver_live_build: $ver_live_build"
-
-		ver_debootstrap=$(dpkg-query -f '${Version}' -W debootstrap)
-		if dpkg --compare-versions "$ver_debootstrap" lt "1.0.97"; then
-			echo "ERROR: You need debootstrap (>= 1.0.97), you have $ver_debootstrap" >&2
-			exit 1
-		fi
-		debug "ver_debootstrap: $ver_debootstrap"
+		require_package live-build "1:20230502+kali4"
+		require_package debootstrap "1.0.97"
 	;;
 	installer)
 		if [ ! -d "$(dirname $0)/kali-config/installer-$KALI_VARIANT" ]; then
 			echo "ERROR: Unknown variant of Kali installer configuration: $KALI_VARIANT" >&2
 		fi
-
-		ver_debian_cd=$(dpkg-query -f '${Version}' -W debian-cd)
-		if dpkg --compare-versions "$ver_debian_cd" lt 3.2.1+kali1; then
-			echo "ERROR: You need debian-cd (>= 3.2.1+kali1), you have $ver_debian_cd" >&2
-			exit 1
-		fi
-		debug "ver_debian_cd: $ver_debian_cd"
-
-		ver_simple_cdd=$(dpkg-query -f '${Version}' -W simple-cdd)
-		if dpkg --compare-versions "$ver_simple_cdd" lt 0.6.9; then
-			echo "ERROR: You need simple-cdd (>= 0.6.9), you have $ver_simple_cdd" >&2
-			exit 1
-		fi
-		debug "ver_simple_cdd: $ver_simple_cdd"
+		require_package debian-cd "3.2.1+kali1"
+		require_package simple-cdd "0.6.9"
 	;;
 	*)
 		echo "ERROR: Unsupported IMAGE_TYPE selected ($IMAGE_TYPE)" >&2

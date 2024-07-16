@@ -1,3 +1,5 @@
+# Ensure eatmydata is available for eatmydata.udeb
+eatmydata
 # Add packages required for virtualization support (installed by
 # /usr/lib/finish-install.d/08hw-detect) including their recommends
 hyperv-daemons
@@ -8,6 +10,9 @@ virtualbox-guest-utils
 virtualbox-guest-x11
 xauth
 xserver-xorg-video-vmware
+# Add packages required for speech synthesis (installed by
+# /usr/lib/finish-install.d/06espeakup) including their recommends
+espeakup
 # Ensure unrar is available, otherwise the "unrar | unar" dependency
 # in kali-linux-headless ends up satisfied by the unar alternative
 unrar
