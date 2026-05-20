@@ -1,9 +1,12 @@
 ##
-## Make sure we have firmware installed. This is actually redundant, since
-## recent versions of live-build have some built-in logic to automatically
-## install firmware anyway.
+## Make sure we have firmware installed. Recent versions of live-build have
+## some built-in logic to automatically install the right firmware, but for
+## that we need DEP-11 metadata in the repository, and Kali has no such.
 ##
 kali-linux-firmware
+firmware-amd-graphics
+firmware-intel-graphics
+firmware-nvidia-graphics
 
 ##
 ## Make sure we install as many input/video drivers as we can. Note that
