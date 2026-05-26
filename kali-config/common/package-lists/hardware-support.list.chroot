@@ -7,6 +7,8 @@ kali-linux-firmware
 firmware-amd-graphics
 firmware-intel-graphics
 firmware-nvidia-graphics
+amd64-microcode
+intel-microcode
 
 ##
 ## Make sure we install as many input/video drivers as we can. Note that
