@@ -95,7 +95,7 @@ xfce  qterminal
 END
 }
 
-configure_sources_list
+configure_apt_sources_list
 configure_zsh
 configure_usergroups
 configure_terminal
