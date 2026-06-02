@@ -4,10 +4,8 @@
 ## that we need DEP-11 metadata in the repository, and Kali has no such.
 ##
 kali-linux-firmware
-#if ARCHITECTURES amd64
-firmware-amd-graphics
-firmware-intel-graphics
-firmware-nvidia-graphics
+kali-linux-firmware-graphics
+#if ARCHITECTURES amd64 i386
 amd64-microcode
 intel-microcode
 #endif
