@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Remove bloat
-apt-get -y remove --purge desktop-base tango-icon-theme xorg
+apt-get -y remove --purge tango-icon-theme xorg
 
 # Remove texlive-latex-extra, a Recommends of gvmd-common.
 # Remove mupdf-tools, a Recommends of texlive-binaries -> dvisvgm.
