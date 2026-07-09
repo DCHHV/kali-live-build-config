@@ -1,4 +1,18 @@
 #!/bin/sh
 
-apt -y remove desktop-base tango-icon-theme xorg
-apt -y autoremove
+# Remove bloat
+apt-get -y remove --purge tango-icon-theme xorg
+
+# Remove texlive-latex-extra, a Recommends of gvmd-common.
+# Remove mupdf-tools, a Recommends of texlive-binaries -> dvisvgm.
+apt-get -y remove --purge mupdf-tools texlive-latex-extra
+
+# Remove firmware-marvell-prestera, it's already filtered out in
+# live-build/functions/firmwarelists.sh.
+apt-get -y remove --purge firmware-marvell-prestera
+
+# Remove some documentation. At the moment, it reduces the size of
+# the squashfs by 9 Mb only, so maybe not worth it...
+apt-get -y remove --purge numba-doc python-odf-doc ruby3.3-doc
+
+apt-get -y autoremove --purge

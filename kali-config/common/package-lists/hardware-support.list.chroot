@@ -1,12 +1,13 @@
 ##
-## The b43 firmware require network access, hence are not dependencies of
-## kali-linux-firmware. But we install those in the live image anyway,
-## since we have network access when we build the live ISO.
+## Make sure we have firmware installed. Recent versions of live-build have
+## some built-in logic to automatically install the right firmware, but for
+## that we need DEP-11 metadata in the repository, and Kali has no such.
 ##
 kali-linux-firmware
-#if ARCHITECTURES i386 amd64
-firmware-b43legacy-installer
-firmware-b43-installer
+kali-linux-firmware-graphics
+#if ARCHITECTURES amd64 i386
+amd64-microcode
+intel-microcode
 #endif
 
 ##

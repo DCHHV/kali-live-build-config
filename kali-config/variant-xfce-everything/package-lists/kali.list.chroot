@@ -1,6 +1,6 @@
-## Live image with LXDE and default tools
+## Live image with Xfce with "all" tools
 ##
-## $ ./build.sh --variant lxde
+## $ ./build.sh --variant xfce-everything
 
 ## Live images always want these
 kali-linux-core
@@ -8,12 +8,12 @@ kali-desktop-live
 
 ## Graphical desktop
 ##   For the complete list see: https://www.kali.org/docs/general-use/metapackages/
-kali-desktop-lxde
+kali-desktop-xfce
 
 ## Metapackages
 ##   You can customize the set of Kali metapackages (groups of tools) to install
 ##   For the complete list see: https://www.kali.org/tools/kali-meta/
-kali-linux-default
+kali-linux-everything
 
 ## Extra Kali packages/tools/applications
 ##   For the complete list see: https://www.kali.org/tools/

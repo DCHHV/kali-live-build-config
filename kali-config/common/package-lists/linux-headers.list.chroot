@@ -11,9 +11,6 @@ linux-headers-amd64
 #if ARCHITECTURES arm64
 linux-headers-arm64
 #endif
-#if ARCHITECTURES armel
-linux-headers-marvell
-#endif
 #if ARCHITECTURES armhf
 linux-headers-armmp
 linux-headers-armmp-lpae
