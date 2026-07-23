@@ -8,8 +8,8 @@ pkg-config
 
 # Qt5.8.X or better required for SavvyCAN, plus other libs
 qtbase5-dev
-libqt5serialbus5-dev
 libqt5serialport5-dev
+#libqt5serialbus5-dev
 qttools5-dev
 qtdeclarative5-dev
 
@@ -45,31 +45,16 @@ kali-tools-sdr
 kali-tools-rfid
 kali-tools-hardware
 
+
 # Hardware tools
-# Logic analyzer and protocol decoder software suite
-sigrok
-#Firmware for Cypress FX2(LP) based logic analyzers
-sigrok-firmware-fx2lafw
-# sigrok logic analyzer, oscilloscope, and MSO GUI
-pulseview
-# GNU C compiler (cross compiler for avr)
-gcc-avr
-# GNU Debugger for avr
-gdb-avr
-# software for programming Atmel AVR microcontrollers
-avrdude
-# tool for searching binary images for embedded files and executable code
-binwalk
-# free and advanced command line hexadecimal editor
-radare2
-# GUI for it (this might get fully replaced later with cutter/rizin?)
-radare2-cutter
-# Open on-chip JTAG debug solution for ARM and MIPS systems
-openocd
 # AVR development board IDE and built-in libraries
 arduino 
 # Program your Arduino from the command line
 arduino-mk
+# software for programming Atmel AVR microcontrollers
+avrdude
+# tool for searching binary images for embedded files and executable code
+binwalk
 # Atmel SAM ARM microcontroller flash programming utility
 bossa-cli
 # Cypress EZ-USB FX2 (LP) programmer
@@ -87,15 +72,17 @@ esptool
 # utility to configure SRAM based ALTERA devices
 #flexloader
 # VHDL simulator for Linux
-#ghdl
-#ghdl-common
-#ghdl-gcc
+ghdl
+ghdl-common
+ghdl-gcc
 # graphical logic circuit simulator
-#glogic
+glogic
 # GNU Circuit Analysis package
 gnucap
 # Graphical Intel 8085 simulator, assembler and debugger
 gnusim8085
+# Tools for interacting with Linux GPIO character device
+gpiod
 # Simulator for Microchip's PIC microcontrollers
 gpsim
 # GNU PIC utilities
@@ -104,24 +91,40 @@ gputils
 gtkwave
 # waveform viewer eg for spice simulators
 #gwave
+# Heterogeneous set of I2C tools for Linux
+i2c-tools
 # switch-level simulator
-#irsim
+irsim
 # interface to NXP LPC Microcontrollers ISP serial interface
 lpctools
 # debugging tool for MSP430 microcontrollers
 mspdebug
 # Spice circuit simulator
 ngspice
+# Open on-chip JTAG debug solution for ARM and MIPS systems
+openocd
+# sigrok logic analyzer, oscilloscope, and MSO GUI
+pulseview
+# free and advanced command line hexadecimal editor
+radare2
 # tool to decode RFID tag data
 rfdump
+# Reverse engineering framework and command-line toolset
+rizin
+# Reverse engineering platform powered by rizin
+rizin-cutter
 # In-System Programmer for 8051 MCUs using usbtiny
-s51dude
+#s51dude
 # OBD-II vehicle diagnostic scanner
 scantool
 # Small Device C Compiler
 sdcc
 # Micro-controller simulator for SDCC
 sdcc-ucsim
+# Logic analyzer and protocol decoder software suite
+sigrok
+#Firmware for Cypress FX2(LP) based logic analyzers
+sigrok-firmware-fx2lafw
 # Atmel AVR simulator
 simavr
 # Simple real time electronic circuit simulator
@@ -133,22 +136,35 @@ stm32flash
 
 # fast processor emulator
 #qemu
+# TODO: Consider including qemu-system-* for different arches
 # JTAG programmer for various flash parts and boards
 urjtag
 # Icarus verilog compiler
 iverilog
 
 # Misc tools
-# fast, scalable, distributed revision control system
-git
 # Document (PostScript, PDF) viewer
 evince
+# fast, scalable, distributed revision control system
+git
+# GTK+ base UVC Viewer
+guvcview
+# Viewer and editor in hexadecimal or ASCII for files or devices
+hexedit
+# TCP/IP swiss army knife
+netcat-traditional
+# terminal multiplexer with VT100/ANSI terminal emulation
+screen
+# multipurpose relay for bidirectional data transfer
+socat
 # terminal multiplexer
 tmux
 # minimal dumb-terminal emulation program
 picocom
-# GTK+ base UVC Viewer
-guvcview
+# Visual binary diff, visually compare binary files
+vbindiff
+# Acurate, fast, and easy-to-use extraction suite (Python 3)
+unblob
 
 # Other potential useful tools:
 # c2tool - C2 programming/debugging interface
@@ -181,12 +197,12 @@ avarice
 avra
 # Programmer for Atmel AVR microcontrollers
 avrp
-# ABC - A System for Sequential Synthesis and Verification
-#berkeley-abc
 # Atmel SAM ARM microcontroller flash programming GUI
 bossa
 # Utility to control X10 Firecracker devices for home automation
 bottlerocket
+# SocketCAN userspace utilities and tools
+can-utils
 # Electronic Design Automation software focused on easy of use and portability
 caneda
 # Handle CAN (Controller Area Network) descriptions - cmdline utilities
@@ -194,7 +210,7 @@ canmatrix-utils
 # C Compiler for TI/Chipcon 8051-based RF SOCs
 # cc1111  Conflicts with sdcc
 # Verilog code coverage analysis tool
-#covered
+covered
 # Digital Filter Coefficients Generator (DFCGen) GTK+
 dfcgen-gtk
 # read temperature sensors in a 1-Wire net
@@ -218,7 +234,7 @@ fritzing-data
 # Easy-to-use electronic design software (parts files)
 fritzing-parts
 # Gerber file viewer for PCB design
-gerbv
+#gerbv
 # Placement for digital VLSI design
 #graywolf
 # Electronic schematic and PCB design software
@@ -258,7 +274,7 @@ libnxt
 # Flash programmer for Renesas M16C and R8C microcontrollers
 m16c-flash
 # VLSI layout tool
-magic
+#magic
 # Graphical Integrated Development Environment for 8051
 mcu8051ide
 # C compiler for LEGO Mindstorms NXT bricks
@@ -266,7 +282,7 @@ nbc
 # simulator for the Microchip PIC16C84 microcontroller
 nitpic
 # Open Lighting Architecture
-ola
+#ola
 # shell utilities to talk to an 1-Wire owserver
 ow-shell
 # tools to monitor or inspect a ow-server link
@@ -276,7 +292,7 @@ owfs
 # common files used by any of the OWFS programs
 owfs-common
 # 1-Wire filesystem
-owfs-fuse
+#owfs-fuse
 # FTP daemon providing access to 1-Wire networks
 owftpd
 # HTTP daemon providing access to 1-Wire networks
@@ -318,9 +334,9 @@ qelectrotech-examples
 # Technology files needed for qflow for osu050
 #qflow-tech-osu050
 # Multi-level, over-the-cell maze router
-#qrouter
+qrouter
 # simulator for Microchip PIC16F84 microcontroller
-simulpic
+#simulpic
 # Utilities for using the Wi-Spy USB spectrum analyzer hardware
 spectools
 # OpenSource ST-Link tools replacement.
@@ -340,13 +356,13 @@ uisp
 # USB HID relay driver
 usbrelay
 # fast free Verilog simulator
-#verilator
+verilator
 # tool for engraving PCBs using CNCs
 visolate
 # Data logger for 1-Wire weather sensors
 w1retap
 # Data logger for 1-Wire weather sensors (MongoDB plugin)
-w1retap-mongo
+#w1retap-mongo
 # Data logger for 1-Wire weather sensors (MySQL plugin)
 w1retap-mysql
 # Data logger for 1-Wire weather sensors (ODBC plugin)
@@ -358,11 +374,13 @@ w1retap-sqlite
 # logic circuits simulator
 wiredpanda
 # Draw circuit schematics or almost anything
-#xcircuit
+xcircuit
 # Framework for Verilog RTL synthesis
-#yosys
+yosys
+# Sequential Logic Synthesis and Verification Algorithms
+yosys-abc
 # Framework for Verilog RTL synthesis (development files)
-#yosys-dev
+yosys-dev
 
 # Other tools in the "Embedded" section that might be useful
 # Firmware for USB JTAG programmers
@@ -380,15 +398,19 @@ gcc-alpha-linux-gnu
 gcc-arm-linux-gnueabi
 gcc-arm-linux-gnueabihf
 gcc-arm-none-eabi
-#gcc-h8300-hms
+# GNU C compiler (cross compiler for avr)
+gcc-avr
+# GNU Debugger for avr
+gdb-avr
+gcc-h8300-hms
 gcc-hppa-linux-gnu
 gcc-hppa64-linux-gnu
-#binutils-m68hc1x
+binutils-m68hc1x
 gcc-m68k-linux-gnu
-gcc-mips-linux-gnu
-gcc-mips64-linux-gnuabi64
-gcc-mips64el-linux-gnuabi64
-gcc-mipsel-linux-gnu
+#gcc-mips-linux-gnu
+#gcc-mips64-linux-gnuabi64
+#gcc-mips64el-linux-gnuabi64
+#gcc-mipsel-linux-gnu
 
 # Audacity for wave analysis
 audacity

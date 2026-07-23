@@ -10,9 +10,9 @@ fi
 # This is until https://bugs.debian.org/908220 has a proper fix.
 if [ -e /etc/cryptsetup-initramfs/conf-hook ]; then
     if grep -q '^#CRYPTSETUP=' /etc/cryptsetup-initramfs/conf-hook; then
-	sed -i -e 's/^#CRYPTSETUP=.*/CRYPTSETUP=y/' /etc/cryptsetup-initramfs/conf-hook
+        sed -i -e 's/^#CRYPTSETUP=.*/CRYPTSETUP=y/' /etc/cryptsetup-initramfs/conf-hook
     else
-	echo "CRYPTSETUP=y" >>/etc/cryptsetup-initramfs/conf-hook
+        echo "CRYPTSETUP=y" >>/etc/cryptsetup-initramfs/conf-hook
     fi
 fi
 

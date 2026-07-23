@@ -1,16 +1,33 @@
 #!/bin/sh
 
+# The reference version of this script is maintained in:
+#   kali-installer/simple-cdd/profiles/kali.postinst
+#   kali-live/kali-config/common/includes.installer/kali-finish-install
+#   kali-live/kali-config/common/includes.chroot/usr/lib/live/config/0031-kali-user-setup
+#   kali-vm/scripts/finish-install.sh
+# (sometimes with small variations)
+#
+# It is used in multiple places to finish configuring the target system
+# and build.sh copies it where required (in the simple-cdd configuration
+# and in the live-build configuration).
+
+get_user_list() {
+    echo kali
+}
+
 configure_zsh() {
-    # Stop if zsh is not present
+    if echo "${LIVE_CONFIG_CMDLINE}" | grep -q 'nozsh'; then
+        echo "INFO: user opted out of zsh by default"
+        return
+    fi
     if [ ! -x /usr/bin/zsh ]; then
-	return
+        echo "INFO: /usr/bin/zsh is not available"
+        return
     fi
-    # Stop if user has opted out of zsh
-    if echo "${LIVE_CONFIG_CMDLINE}" | grep -qs 'nozsh'; then
-	return
-    fi
-    chsh --shell /usr/bin/zsh kali
-    chsh --shell /usr/bin/zsh root
+    for user in $(get_user_list); do
+        echo "INFO: changing default shell of user '$user' to zsh"
+        chsh --shell /usr/bin/zsh $user
+    done
 }
 
 configure_usergroups() {
@@ -19,16 +36,40 @@ configure_usergroups() {
     addgroup --system wireshark || true
 
     # adm - read access to log files
-    # dialout - for serial port access
+    # dialout - for serial access
     # kaboxer - for kaboxer
     # vboxsf - shared folders for virtualbox guest
-    # wireshark - capture sessions without being root
+    # wireshark - capture sessions in wireshark
     kali_groups="adm dialout kaboxer vboxsf wireshark"
 
-    for grp in $kali_groups; do
-	getent group $grp >/dev/null || continue
-	usermod -a -G $grp kali
+    for user in $(get_user_list | grep -xv root); do
+        echo "INFO: adding user '$user' to groups '$kali_groups'"
+        for grp in $kali_groups; do
+            getent group $grp >/dev/null || continue
+            usermod -a -G $grp $user
+        done
     done
+}
+
+pkg_installed() {
+    dpkg -s "$1" 2>/dev/null | grep -q "ok installed"
+}
+
+configure_terminal() {
+    while read -r desktop terminal; do
+        pkg_installed kali-desktop-$desktop || continue
+        echo "INFO: setting x-terminal-emulator alternative to '$terminal'"
+        update-alternatives --verbose --set x-terminal-emulator /usr/bin/$terminal || true
+        break
+    done <<END
+e17   terminology
+gnome gnome-terminal.wrapper
+i3    kitty
+kde   konsole
+lxde  lxterminal
+mate  mate-terminal.wrapper
+xfce  qterminal
+END
 }
 
 # Avoid configuring multiple times in case persistence is enabled
@@ -39,11 +80,10 @@ fi
 # Set "kali" as password for the user kali
 usermod -p 'AqLUsDitNnTsw' kali
 
-# Change default shell to zsh
+# Apply various configuration
 configure_zsh
-
-# Add kali user to additional groups
 configure_usergroups
+configure_terminal
 
 # Remember that this script has been run
 touch /var/lib/live/config/kali-user-setup
